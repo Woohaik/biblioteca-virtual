@@ -1,4 +1,4 @@
-interface Enviroment {
+type Enviroment = {
     DB: {
         username: string | undefined;
         password: string | undefined;
@@ -9,5 +9,3 @@ interface Enviroment {
     PORT: string | number,
     __IsProd__: boolean,
 }
-
-
