@@ -9,3 +9,17 @@ type Enviroment = {
     PORT: string | number,
     __IsProd__: boolean,
 }
+
+
+interface IUser {
+    id: string;
+    email: string;
+    name: string;
+    password: string;
+}
+interface IUserDto {
+    id: string;
+    email: string;
+    name: string;
+}
+

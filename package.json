@@ -19,10 +19,15 @@
   "author": "Grupo de Ingenieria de Software II",
   "license": "ISC",
   "dependencies": {
+    "awilix": "^4.3.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "inversify": "^5.0.5",
-    "reflect-metadata": "^0.1.13"
+    "inversify-express-utils": "^6.3.2",
+    "module-alias": "^2.2.2",
+    "pg": "^8.5.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.31"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
