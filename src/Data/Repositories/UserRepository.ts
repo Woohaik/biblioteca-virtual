@@ -14,12 +14,12 @@ export class UserRepository implements IUserRepository {
     }
 
     async save(entity: IUser): Promise<void> {
-        console.log(entity);
 
         await this.userConnection.insert({
             Email: entity.Email,
             Name: entity.Name,
             Password: entity.Password,
+            Username: entity.Username
         });
 
     }

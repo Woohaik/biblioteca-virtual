@@ -16,12 +16,14 @@ interface IUser {
     Email: string;
     Name: string;
     Password: string;
+    Username: string;
 }
 
 interface IUserDto {
     ID?: string;
     Email: string;
     Name: string;
+    Username: string;
 }
 
 interface IUserService {

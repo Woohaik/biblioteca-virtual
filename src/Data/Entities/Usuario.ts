@@ -19,6 +19,9 @@ export class Usuario implements IUser {
     public Name: string;
 
     @Column()
+    public Username: string;
+
+    @Column()
     public Password: string;
 
     @CreateDateColumn()
