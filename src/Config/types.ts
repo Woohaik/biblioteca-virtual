@@ -17,9 +17,20 @@ interface IUser {
     name: string;
     password: string;
 }
+
 interface IUserDto {
     id: string;
     email: string;
     name: string;
 }
 
+interface IUserService {
+    getUsers(): IUser[]
+}
+
+interface IRepository<T> {
+    getById(id: number): Promise<T | undefined>;
+    save(entity: T): Promise<T | undefined>;
+}
+
+interface IUserRepository extends IRepository<IUser> { }

@@ -6,14 +6,14 @@ import {
     requestBody
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
-import { UserService } from '../../App/Services/UserService';
+
 import { Response } from 'express';
 import { TYPES } from "../../Config/constants"
 
 
 @controller('/api/user')
 export class UserController {
-    constructor(@inject(TYPES.UserService) private userService: UserService) { }
+    constructor(@inject(TYPES.UserService) private userService: IUserService) { }
     @httpGet('/')
     public getUsers(): IUser[] {
         return this.userService.getUsers();

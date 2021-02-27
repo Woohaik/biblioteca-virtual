@@ -1,8 +1,11 @@
-import { injectable } from 'inversify';
+import { TYPES } from '../../config/constants';
+import { inject, injectable } from 'inversify';
 
 
 @injectable()
-export class UserService {
+export class UserService implements IUserService {
+
+    constructor(@inject(TYPES.UserRepository) private userRepository: IUserRepository) { }
 
     private userStorage: IUser[] = [{
         id: "1",
@@ -20,18 +23,7 @@ export class UserService {
         return this.userStorage;
     }
 
-    public getUser(id: string): IUser {
-        let result: IUser;
-
-        this.userStorage.map(user => {
-            if (user.name === id) {
-                result = user;
-            }
-        });
-        result = this.userStorage[0]
-
-        return result;
+    public async getUser(id: string): Promise<IUser | undefined> {
+        return await this.userRepository.getById(+id)
     }
-
-
 }
