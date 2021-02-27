@@ -9,7 +9,8 @@
     "start:ts": "ts-node src/index.ts",
     "dev:ts": "nodemon --exec ts-node src/index.ts",
     "watch": "tsc -w",
-    "create:migration": "echo mangoVerde"
+    "create:migration": "echo mangoVerde",
+    "test": "jest"
   },
   "keywords": [
     "Ingenieria de Software II",
@@ -19,6 +20,7 @@
   "author": "Grupo de Ingenieria de Software II",
   "license": "ISC",
   "dependencies": {
+    "argon2": "^0.27.1",
     "awilix": "^4.3.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -31,7 +33,10 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
+    "@types/jest": "^26.0.20",
+    "jest": "^26.6.3",
     "nodemon": "^2.0.7",
+    "ts-jest": "^26.5.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   }

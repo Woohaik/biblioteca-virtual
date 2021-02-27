@@ -8,11 +8,6 @@
       "es2017",
       "esnext.asynciterable"
     ],
-    "paths": {
-      "@root/*": [
-        "src/*"
-      ]
-    },
     "skipLibCheck": true,
     "sourceMap": true,
     "outDir": "./dist",
@@ -34,7 +29,9 @@
     "baseUrl": "."
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.spec.ts"
   ],
   "include": [
     "./src/**/*.tsx",

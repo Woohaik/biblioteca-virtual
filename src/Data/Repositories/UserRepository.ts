@@ -1,30 +1,26 @@
 import { injectable } from "inversify";
 import { getConnection, Repository } from "typeorm";
-import { User } from "../Entities/User"
+import { Usuario } from "../Entities/Usuario"
 
 @injectable()
 export class UserRepository implements IUserRepository {
-    private userConnection: Repository<User>;
+    private userConnection: Repository<Usuario>;
     constructor() {
         const conn = getConnection();
-        this.userConnection = conn.getRepository(User);
+        this.userConnection = conn.getRepository(Usuario);
     }
     async getById(id: number): Promise<IUser | undefined> {
         return await this.userConnection.findOne(id)
     }
 
-    async save(entity: IUser): Promise<IUser | undefined> {
+    async save(entity: IUser): Promise<void> {
         console.log(entity);
-        
-  
 
-        console.log(      await this.userConnection.insert({
-            email: entity.email,
-            name: entity.name,
-            password: entity.password,
-        }));
-        
+        await this.userConnection.insert({
+            Email: entity.Email,
+            Name: entity.Name,
+            Password: entity.Password,
+        });
 
-        return undefined;
     }
 }
