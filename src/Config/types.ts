@@ -12,20 +12,22 @@ type Enviroment = {
 
 
 interface IUser {
-    id: string;
+    id?: string;
     email: string;
     name: string;
     password: string;
 }
 
 interface IUserDto {
-    id: string;
+    id?: string;
     email: string;
     name: string;
 }
 
 interface IUserService {
-    getUsers(): IUser[]
+
+    getUser(id: number): Promise<IUser | undefined>
+    registerUser(param: IUser): Promise<IUser | undefined>
 }
 
 interface IRepository<T> {

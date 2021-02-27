@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
 import { getConnection, Repository } from "typeorm";
-import { User } from "../../Models/User"
+import { User } from "../Entities/User"
 
 @injectable()
 export class UserRepository implements IUserRepository {
@@ -13,8 +13,18 @@ export class UserRepository implements IUserRepository {
         return await this.userConnection.findOne(id)
     }
 
-    save(entity: IUser): Promise<IUser | undefined> {
+    async save(entity: IUser): Promise<IUser | undefined> {
         console.log(entity);
-        throw new Error("Method not implemented.");
+        
+  
+
+        console.log(      await this.userConnection.insert({
+            email: entity.email,
+            name: entity.name,
+            password: entity.password,
+        }));
+        
+
+        return undefined;
     }
 }

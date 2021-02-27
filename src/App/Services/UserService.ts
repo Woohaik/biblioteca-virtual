@@ -4,26 +4,13 @@ import { inject, injectable } from 'inversify';
 
 @injectable()
 export class UserService implements IUserService {
-
     constructor(@inject(TYPES.UserRepository) private userRepository: IUserRepository) { }
 
-    private userStorage: IUser[] = [{
-        id: "1",
-        password: "1",
-        email: 'lorem@ipsum.com',
-        name: 'Lorem'
-    }, {
-        id: "1",
-        password: "1",
-        email: 'doloe@sit.com',
-        name: 'Dolor'
-    }];
-
-    public getUsers(): IUser[] {
-        return this.userStorage;
+    async registerUser(newUser: IUser): Promise<IUser | undefined> {
+        return await this.userRepository.save(newUser)
     }
 
-    public async getUser(id: string): Promise<IUser | undefined> {
-        return await this.userRepository.getById(+id)
+    public async getUser(id: number): Promise<IUser | undefined> {
+        return await this.userRepository.getById(id)
     }
 }
