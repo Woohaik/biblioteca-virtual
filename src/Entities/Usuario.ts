@@ -16,13 +16,22 @@ export class Usuario implements IUser {
     public Email: string;
 
     @Column()
+    public ConfirmedEmail: boolean;
+
+    @Column()
     public Name: string;
+
+    @Column()
+    public LastName: string;
 
     @Column()
     public Username: string;
 
     @Column()
     public Password: string;
+
+    @Column({ nullable: true })
+    public RefreshToken: string;
 
     @CreateDateColumn()
     public CreatedAt: Date;

@@ -1,6 +1,6 @@
 import argon from "argon2";
 
-export const hashPassord = async (password: string): Promise<string> => {
+export const hashPassword = async (password: string): Promise<string> => {
     return await argon.hash(password);
 }
 

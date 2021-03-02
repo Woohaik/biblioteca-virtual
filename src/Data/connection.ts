@@ -1,5 +1,5 @@
 import { createConnection } from "typeorm";
-import { Usuario } from "./Entities/Usuario";
+import { Usuario } from "../Entities/Usuario";
 import ENVIRONMENTS from "../Config"
 
 export const getDbConnection = async () => {

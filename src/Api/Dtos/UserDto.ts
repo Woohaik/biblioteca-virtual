@@ -1,4 +1,5 @@
-class UserDto implements IUserDto {
+export class UserDto implements IUserDto {
+    LastName: string;
     ID?: string | undefined;
     Email: string;
     Name: string;

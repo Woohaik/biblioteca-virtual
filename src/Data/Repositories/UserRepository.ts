@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
 import { getConnection, Repository } from "typeorm";
-import { Usuario } from "../Entities/Usuario"
+import { Usuario } from "../../Entities/Usuario"
 
 @injectable()
 export class UserRepository implements IUserRepository {
@@ -14,12 +14,14 @@ export class UserRepository implements IUserRepository {
     }
 
     async save(entity: IUser): Promise<void> {
-
         await this.userConnection.insert({
             Email: entity.Email,
             Name: entity.Name,
             Password: entity.Password,
-            Username: entity.Username
+            Username: entity.Username,
+            ConfirmedEmail: false,
+            LastName: entity.LastName,
+            RefreshToken: ""
         });
 
     }

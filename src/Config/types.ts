@@ -17,6 +17,9 @@ interface IUser {
     Name: string;
     Password: string;
     Username: string;
+    LastName: string;
+    ConfirmedEmail: boolean;
+    RefreshToken?: string ;
 }
 
 interface IUserDto {
@@ -24,6 +27,7 @@ interface IUserDto {
     Email: string;
     Name: string;
     Username: string;
+    LastName: string;
 }
 
 interface IUserService {
