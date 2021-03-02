@@ -6,6 +6,10 @@ type Enviroment = {
         host: string | undefined;
         dialect: "postgres";
     },
+    EMAIL: {
+        username: string | undefined;
+        password: string | undefined;
+    }
     PORT: string | number,
     __IsProd__: boolean,
 }
@@ -19,7 +23,7 @@ interface IUser {
     Username: string;
     LastName: string;
     ConfirmedEmail: boolean;
-    RefreshToken?: string ;
+    RefreshToken: string;
 }
 
 interface IUserDto {
@@ -37,6 +41,10 @@ interface IUserService {
 interface IRepository<T> {
     getById(id: number): Promise<T | undefined>;
     save(entity: T): Promise<void>;
+    edit(id: number, entity: T): Promise<void>;
+    delete(id: number): Promise<void>;
 }
 
-interface IUserRepository extends IRepository<IUser> { }
+interface IUserRepository extends IRepository<IUser> {
+    getByEmail(id: number): Promise<IUser | undefined>;
+}

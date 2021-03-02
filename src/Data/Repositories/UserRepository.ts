@@ -9,6 +9,19 @@ export class UserRepository implements IUserRepository {
         const conn = getConnection();
         this.userConnection = conn.getRepository(Usuario);
     }
+
+    async getByEmail(id: number): Promise<IUser | undefined> {
+        return await this.userConnection.findOne(id)
+    }
+
+    async edit(id: number, entity: IUser): Promise<void> {
+        console.log(id, entity);
+
+    }
+    async delete(id: number): Promise<void> {
+        console.log(id);
+    }
+
     async getById(id: number): Promise<IUser | undefined> {
         return await this.userConnection.findOne(id)
     }
