@@ -11,7 +11,12 @@ const enviroment: Enviroment = {
     EMAIL: {
         password: process.env.EMAIL_PASSWORD,
         username: process.env.EMAIL_USER,
-    }
+    },
+    SECRET: (() => {
+        if (typeof process.env.JWT_SECRET === "undefined") throw new Error("SECRET NO VALIDO")
+        return process.env.JWT_SECRET || ""
+    })()
+
 };
 
 export default enviroment;

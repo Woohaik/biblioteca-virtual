@@ -11,6 +11,7 @@ import { UserService } from './App/Services/UserService';
 import { getDbConnection } from "./Data/connection"
 import { UserRepository } from "./Data/Repositories/UserRepository";
 
+
 export const bindings = new AsyncContainerModule(async (bind) => {
     // Aca conexion a db
     await getDbConnection()

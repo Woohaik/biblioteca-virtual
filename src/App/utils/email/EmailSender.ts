@@ -1,11 +1,10 @@
 import nodemailer from "nodemailer";
-import CONFIG from "../../Config"
+import CONFIG from "../../../Config"
 
 
 export const sendEmail = async (to: string, bodyFunction: any) => {
-
     const transporter = nodemailer.createTransport({
-        host: "gmail",
+        service: 'gmail',
         port: 587,
         secure: false,
         auth: {
@@ -14,16 +13,13 @@ export const sendEmail = async (to: string, bodyFunction: any) => {
         },
     });
     const info = await transporter.sendMail({
-        from: '"Fred Foo 👻" <foo@example.com>', // sender address
+        from: '"Bibliotech 👻" <foo@example.com>', // sender address
         to, // list of receivers
         ...bodyFunction
     });
 
-
     console.log("Message sent: %s", info.messageId);
-
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-
 }
 
 
