@@ -8,7 +8,7 @@ import ENVIRONMENTS from "../Config"
 export const getDbConnection = async () => {
     const entities = [
         Usuario,
-        Libro
+        Libro,
         ConfirmEmails
 
     ];

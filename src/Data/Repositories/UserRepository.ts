@@ -63,3 +63,4 @@ export class UserRepository implements IUserRepository {
         await this.emailConnection.delete({ ID: confirmMailId })
         await this.userConnection.update({ ID: userId }, { ConfirmedEmail: true })
     }
+}
