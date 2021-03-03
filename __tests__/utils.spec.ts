@@ -1,4 +1,4 @@
-import { hashPassword, comparePassword } from "./../src/App/utils/PasswordCriptBcrip"
+import { hashPassword, comparePassword } from "./../src/App/utils"
 
 describe("Cript and Bcript Password", () => {
     it("Cript Password", async () => {

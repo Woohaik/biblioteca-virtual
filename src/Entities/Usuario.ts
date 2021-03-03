@@ -12,7 +12,7 @@ export class Usuario implements IUser {
     @PrimaryGeneratedColumn()
     public ID: string;
 
-    @Column()
+    @Column({ unique: true })
     public Email: string;
 
     @Column()

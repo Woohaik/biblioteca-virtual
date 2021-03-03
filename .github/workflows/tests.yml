@@ -16,3 +16,5 @@ jobs:
           node-version: 14.15.0
       - run: npm ci
       - run: npm test
+        env:
+          JWT_SECRET: xdd

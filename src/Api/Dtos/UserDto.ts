@@ -1,7 +1,19 @@
 export class UserDto implements IUserDto {
-    LastName: string;
     ID?: string | undefined;
-    Email: string;
     Name: string;
+    LastName: string;
     Username: string;
+    Email: string;
+    CreatedAt: Date;
+    UpdatedAt: Date;
+    constructor(user: IUser) {
+        this.ID = user.ID;
+        this.Name = user.Name;
+        this.LastName = user.LastName;
+        this.Username = user.Username;
+        this.Email = user.Email;
+        this.CreatedAt = user.CreatedAt;
+        this.UpdatedAt = user.UpdatedAt;
+    }
+
 }
