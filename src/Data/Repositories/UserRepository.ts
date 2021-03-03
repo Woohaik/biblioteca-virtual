@@ -25,4 +25,8 @@ export class UserRepository implements IUserRepository {
         });
 
     }
+
+    async findAll(): Promise<IUser[]> {
+     return await this.userConnection.find();
+    }
 }

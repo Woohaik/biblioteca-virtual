@@ -1,10 +1,12 @@
 import { createConnection } from "typeorm";
 import { Usuario } from "../Entities/Usuario";
+import { Libro } from "../Entities/Libros";
 import ENVIRONMENTS from "../Config"
 
 export const getDbConnection = async () => {
     const entities = [
-        Usuario
+        Usuario,
+        Libro
     ];
     const conn = await createConnection({
         type: ENVIRONMENTS.DB.dialect,
