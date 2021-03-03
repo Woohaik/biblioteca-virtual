@@ -8,5 +8,6 @@ export default {
         host: process.env.production_host,
         dialect: "postgres" as const,
     },
-    PORT: process.env.PORT || 3000
+    HOST: "https://bibliotechtest.herokuapp.com",
+    PORT: process.env.PORT || 4000
 }

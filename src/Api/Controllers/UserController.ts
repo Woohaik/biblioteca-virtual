@@ -16,14 +16,15 @@ import { UserDto } from '../Dtos/UserDto';
 
 @controller('/api/user')
 export class UserController implements interfaces.Controller {
+
     constructor(@inject(TYPES.UserService) private userService: IUserService) { }
 
     @httpGet("/")
     public async getAllUsers(): Promise<ResponseDto> {
         let allUsers = await this.userService.getAllUser()
-        let mappedUsers = allUsers.map((user) => new UserDto(user))
+        let users = allUsers.map((user) => new UserDto(user))
         return new ResponseDto([], {
-            data: mappedUsers
+            users
         })
     }
 

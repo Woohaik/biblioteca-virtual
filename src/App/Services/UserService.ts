@@ -15,6 +15,7 @@ export class UserService implements IUserService {
     }
 
     async confirmEmail(emailId: string): Promise<void> {
+
         let toConfirmEmail = await this.userRepository.getConfirmationEmail(emailId)
         if (toConfirmEmail) {
             let user = await this.userRepository.getByEmail(toConfirmEmail)
@@ -31,4 +32,5 @@ export class UserService implements IUserService {
         await this.userRepository.saveEmailValidate(confirmEmailId, newUser.Email)
         await sendEmail(newUser.Email, confirmEmailTemplate(confirmEmailId))
     }
+    
 }
