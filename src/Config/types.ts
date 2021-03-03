@@ -12,7 +12,8 @@ type Enviroment = {
     }
     PORT: string | number,
     __IsProd__: boolean,
-    SECRET: string;
+    SECRET: string,
+    HOST: string
 }
 
 
@@ -24,6 +25,7 @@ interface IUser {
     Username: string;
     LastName: string;
     ConfirmedEmail: boolean;
+
     RefreshToken: string;
     CreatedAt: Date;
     UpdatedAt: Date;
@@ -37,6 +39,7 @@ interface IUserDto {
     LastName: string;
     CreatedAt: Date;
     UpdatedAt: Date;
+    ConfirmedEmail: boolean;
 }
 
 interface IUserService {

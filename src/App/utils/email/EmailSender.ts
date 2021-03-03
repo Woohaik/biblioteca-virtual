@@ -17,12 +17,6 @@ export const sendEmail = async (to: string, bodyFunction: any) => {
         to, // list of receivers
         ...bodyFunction
     });
-
     console.log("Message sent: %s", info.messageId);
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 }
-
-
-
-
-

@@ -1,4 +1,6 @@
+import CONFIG from "./../../../Config"
+
 export const confirmEmailTemplate = (link: string) => ({
     subject: "Confirmar Registro",
-    html: `<a href="http://localhost:3000/api/user/confirm-email/${link}"> Click Para Confirmar :) </a>  `
+    html: `<a href="${CONFIG.HOST}/api/user/confirm-email/${link}"> Click Para Confirmar :) </a>`
 })

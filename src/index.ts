@@ -3,6 +3,8 @@ import { InversifyExpressServer } from 'inversify-express-utils';
 import * as bodyParser from 'body-parser';
 import { Container } from "inversify";
 import { bindings } from "./inversify.config";
+import CONFIG from "./Config"
+import cors from "cors";
 
 (async () => {
     const container = new Container()
@@ -13,9 +15,10 @@ import { bindings } from "./inversify.config";
             extended: true
         }));
         app.use(bodyParser.json());
+        app.use(cors({ origin: "*" }))
     });
     let serverInstance = server.build();
-    serverInstance.listen(3000, () => {
-        console.log('Server started on port 3000 :)');
+    serverInstance.listen(CONFIG.PORT, () => {
+        console.log(`Server started on port ${CONFIG.PORT} :)`);
     });
 })();

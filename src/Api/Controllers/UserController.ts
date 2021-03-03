@@ -16,6 +16,7 @@ import { UserDto } from '../Dtos/UserDto';
 
 @controller('/api/user')
 export class UserController implements interfaces.Controller {
+
     constructor(@inject(TYPES.UserService) private userService: IUserService) { }
 
     @httpGet("/")

@@ -6,6 +6,7 @@ export class UserDto implements IUserDto {
     Email: string;
     CreatedAt: Date;
     UpdatedAt: Date;
+    ConfirmedEmail: boolean;
     constructor(user: IUser) {
         this.ID = user.ID;
         this.Name = user.Name;
@@ -14,6 +15,7 @@ export class UserDto implements IUserDto {
         this.Email = user.Email;
         this.CreatedAt = user.CreatedAt;
         this.UpdatedAt = user.UpdatedAt;
+        this.ConfirmedEmail = user.ConfirmedEmail
     }
 
 }
