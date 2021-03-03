@@ -6,7 +6,7 @@ export class BookService implements IBookService {
     constructor(@inject(TYPES.BookRepository) private bookRepository: IBookRepository) { }
 
     async getAllBooks(): Promise<IBook[]> {
-        return await this.bookRepository.findAll()
-    }  
+        return await this.bookRepository.getAll()
+    }
 
 }

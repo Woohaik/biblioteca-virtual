@@ -9,6 +9,18 @@ export class BookRepository implements IBookRepository {
         const conn = getConnection();
         this.bookConnection = conn.getRepository(Libro);
     }
+    edit(id: number, entity: IBook): Promise<void> {
+        console.log(id);
+        console.log(entity);
+
+
+        throw new Error("Method not implemented.");
+    }
+    delete(id: number): Promise<void> {
+        console.log(id);
+
+        throw new Error("Method not implemented.");
+    }
     async getById(id: number): Promise<IBook | undefined> {
         return await this.bookConnection.findOne(id)
     }
@@ -25,7 +37,7 @@ export class BookRepository implements IBookRepository {
         });
     }
 
-    async findAll(): Promise<IBook[]> {
+    async getAll(): Promise<IBook[]> {
         return await this.bookConnection.find()
     }
 }
