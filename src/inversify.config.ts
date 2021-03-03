@@ -13,6 +13,7 @@ import { getDbConnection } from "./Data/connection"
 import { UserRepository } from "./Data/Repositories/UserRepository";
 import { BookRepository } from "./Data/Repositories/BookRepository";
 
+
 export const bindings = new AsyncContainerModule(async (bind) => {
     // Aca conexion a db
     await getDbConnection()
