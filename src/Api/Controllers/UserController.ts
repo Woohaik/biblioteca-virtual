@@ -22,9 +22,9 @@ export class UserController implements interfaces.Controller {
     @httpGet("/")
     public async getAllUsers(): Promise<ResponseDto> {
         let allUsers = await this.userService.getAllUser()
-        let mappedUsers = allUsers.map((user) => new UserDto(user))
+        let users = allUsers.map((user) => new UserDto(user))
         return new ResponseDto([], {
-            data: mappedUsers
+            users
         })
     }
 
