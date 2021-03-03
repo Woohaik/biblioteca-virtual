@@ -46,6 +46,33 @@ interface IUserService {
     confirmEmail(confirmMailId: string): Promise<void>
 }
 
+interface IBook {
+    ID?: string;
+    Nombre: string; 
+    Autor: string; 
+    Genero: string; 
+    Calificacion: number; 
+    ISBN: string; 
+    Editorial: string; 
+    Sinopsis: string;
+}
+
+interface IBookDto {
+    ID?: string;
+    Nombre: string; 
+    Autor: string; 
+    Genero: string; 
+    Calificacion: number; 
+    ISBN: string; 
+    Editorial: string; 
+    Sinopsis: string;
+}
+
+interface IBookService {
+    getAllBooks(): Promise<IBook[]>
+}
+
+
 interface IRepository<T> {
     getById(id: number): Promise<T | undefined>;
     getAll(): Promise<T[]>;
@@ -59,4 +86,12 @@ interface IUserRepository extends IRepository<IUser> {
     saveEmailValidate(id: string, email: string): Promise<void>;
     confirmEmail(userId: string, confirmMailId: string): Promise<void>;
     getConfirmationEmail(confirmMailId: string): Promise<string | undefined>;
+}
+
+
+
+
+interface IBookRepository extends IRepository<IBook> { }
+
+  
 }
