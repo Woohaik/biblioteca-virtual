@@ -7,7 +7,7 @@ export default {
         database: process.env.develop_database,
         host: process.env.develop_host,
         dialect: "postgres" as const,
-    },
+    }, 
     HOST: `http://localhost:${process.env.PORT || 4000}`,
     PORT: process.env.PORT || 4000
 }

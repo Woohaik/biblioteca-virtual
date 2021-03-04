@@ -18,5 +18,5 @@ const enviroment: Enviroment = {
     })()
 
 };
-
+ 
 export default enviroment;
