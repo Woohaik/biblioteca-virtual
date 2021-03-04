@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateUniqueId = void 0;
-const uuid_1 = require("uuid");
-const generateUniqueId = () => {
+var uuid_1 = require("uuid");
+var generateUniqueId = function () {
     return uuid_1.v4();
 };
 exports.generateUniqueId = generateUniqueId;

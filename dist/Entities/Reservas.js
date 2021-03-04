@@ -10,39 +10,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Booking = void 0;
-const typeorm_1 = require("typeorm");
-let Booking = class Booking {
-};
-__decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
-    __metadata("design:type", String)
-], Booking.prototype, "ID", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Booking.prototype, "IdUser", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Booking.prototype, "IdBook", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", Date)
-], Booking.prototype, "StartDate", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", Date)
-], Booking.prototype, "EndDate", void 0);
-__decorate([
-    typeorm_1.CreateDateColumn(),
-    __metadata("design:type", Date)
-], Booking.prototype, "CreatedAt", void 0);
-__decorate([
-    typeorm_1.UpdateDateColumn(),
-    __metadata("design:type", Date)
-], Booking.prototype, "UpdatedAt", void 0);
-Booking = __decorate([
-    typeorm_1.Entity()
-], Booking);
+var typeorm_1 = require("typeorm");
+var Booking = (function () {
+    function Booking() {
+    }
+    __decorate([
+        typeorm_1.PrimaryGeneratedColumn(),
+        __metadata("design:type", String)
+    ], Booking.prototype, "ID", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Booking.prototype, "IdUser", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Booking.prototype, "IdBook", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", Date)
+    ], Booking.prototype, "StartDate", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", Date)
+    ], Booking.prototype, "EndDate", void 0);
+    __decorate([
+        typeorm_1.CreateDateColumn(),
+        __metadata("design:type", Date)
+    ], Booking.prototype, "CreatedAt", void 0);
+    __decorate([
+        typeorm_1.UpdateDateColumn(),
+        __metadata("design:type", Date)
+    ], Booking.prototype, "UpdatedAt", void 0);
+    Booking = __decorate([
+        typeorm_1.Entity()
+    ], Booking);
+    return Booking;
+}());
 exports.Booking = Booking;
 //# sourceMappingURL=Reservas.js.map

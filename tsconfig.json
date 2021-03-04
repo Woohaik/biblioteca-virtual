@@ -1,12 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "module": "commonjs",
     "lib": [
-      "dom",
-      "es6",
-      "es2017",
-      "esnext.asynciterable"
+      "es5",
     ],
     "skipLibCheck": true,
     "sourceMap": true,
@@ -26,6 +23,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
+    "downlevelIteration": true,
     "baseUrl": "."
   },
   "exclude": [

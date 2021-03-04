@@ -10,55 +10,58 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Libro = void 0;
-const typeorm_1 = require("typeorm");
-let Libro = class Libro {
-};
-__decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
-    __metadata("design:type", String)
-], Libro.prototype, "ID", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Libro.prototype, "Nombre", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Libro.prototype, "Autor", void 0);
-__decorate([
-    typeorm_1.Column({ nullable: true }),
-    __metadata("design:type", Number)
-], Libro.prototype, "Anio", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Libro.prototype, "Genero", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", Number)
-], Libro.prototype, "Calificacion", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Libro.prototype, "ISBN", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Libro.prototype, "Editorial", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Libro.prototype, "Sinopsis", void 0);
-__decorate([
-    typeorm_1.CreateDateColumn(),
-    __metadata("design:type", Date)
-], Libro.prototype, "CreatedAt", void 0);
-__decorate([
-    typeorm_1.UpdateDateColumn(),
-    __metadata("design:type", Date)
-], Libro.prototype, "UpdatedAt", void 0);
-Libro = __decorate([
-    typeorm_1.Entity()
-], Libro);
+var typeorm_1 = require("typeorm");
+var Libro = (function () {
+    function Libro() {
+    }
+    __decorate([
+        typeorm_1.PrimaryGeneratedColumn(),
+        __metadata("design:type", String)
+    ], Libro.prototype, "ID", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Libro.prototype, "Nombre", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Libro.prototype, "Autor", void 0);
+    __decorate([
+        typeorm_1.Column({ nullable: true }),
+        __metadata("design:type", Number)
+    ], Libro.prototype, "Anio", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Libro.prototype, "Genero", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", Number)
+    ], Libro.prototype, "Calificacion", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Libro.prototype, "ISBN", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Libro.prototype, "Editorial", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Libro.prototype, "Sinopsis", void 0);
+    __decorate([
+        typeorm_1.CreateDateColumn(),
+        __metadata("design:type", Date)
+    ], Libro.prototype, "CreatedAt", void 0);
+    __decorate([
+        typeorm_1.UpdateDateColumn(),
+        __metadata("design:type", Date)
+    ], Libro.prototype, "UpdatedAt", void 0);
+    Libro = __decorate([
+        typeorm_1.Entity()
+    ], Libro);
+    return Libro;
+}());
 exports.Libro = Libro;
 //# sourceMappingURL=Libros.js.map

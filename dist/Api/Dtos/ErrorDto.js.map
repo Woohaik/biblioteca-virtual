@@ -1,1 +1,1 @@
-{"version":3,"file":"ErrorDto.js","sourceRoot":"","sources":["../../../src/Api/Dtos/ErrorDto.ts"],"names":[],"mappings":";;;AAAA,MAAa,QAAQ;IACjB,YAAmB,KAAa,EAAS,OAAe;QAArC,UAAK,GAAL,KAAK,CAAQ;QAAS,YAAO,GAAP,OAAO,CAAQ;IAAI,CAAC;CAChE;AAFD,4BAEC"}
+{"version":3,"file":"ErrorDto.js","sourceRoot":"","sources":["../../../src/Api/Dtos/ErrorDto.ts"],"names":[],"mappings":";;;AAAA;IACI,kBAAmB,KAAa,EAAS,OAAe;QAArC,UAAK,GAAL,KAAK,CAAQ;QAAS,YAAO,GAAP,OAAO,CAAQ;IAAI,CAAC;IACjE,eAAC;AAAD,CAAC,AAFD,IAEC;AAFY,4BAAQ"}

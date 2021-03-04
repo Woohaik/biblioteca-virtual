@@ -1,11 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ErrorDto = void 0;
-class ErrorDto {
-    constructor(field, message) {
+var ErrorDto = (function () {
+    function ErrorDto(field, message) {
         this.field = field;
         this.message = message;
     }
-}
+    return ErrorDto;
+}());
 exports.ErrorDto = ErrorDto;
 //# sourceMappingURL=ErrorDto.js.map

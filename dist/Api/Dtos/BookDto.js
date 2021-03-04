@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookDto = void 0;
-class BookDto {
-    constructor(book) {
+var BookDto = (function () {
+    function BookDto(book) {
         this.Nombre = book.Nombre;
         this.Autor = book.Autor;
         this.Anio = book.Anio;
@@ -12,6 +12,7 @@ class BookDto {
         this.Calificacion = book.Calificacion;
         this.Sinopsis = book.Sinopsis;
     }
-}
+    return BookDto;
+}());
 exports.BookDto = BookDto;
 //# sourceMappingURL=BookDto.js.map

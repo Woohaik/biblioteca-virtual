@@ -20,50 +20,112 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserService = void 0;
-const constants_1 = require("../../config/constants");
-const inversify_1 = require("inversify");
-const utils_1 = require("../utils");
-let UserService = class UserService {
-    constructor(userRepository) {
-        this.userRepository = userRepository;
-    }
-    getAllUser() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.userRepository.getAll();
-        });
-    }
-    getById() {
-        return __awaiter(this, void 0, void 0, function* () {
-            throw new Error('Method not implemented.');
-        });
-    }
-    confirmEmail(emailId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let toConfirmEmail = yield this.userRepository.getConfirmationEmail(emailId);
-            if (toConfirmEmail) {
-                let user = yield this.userRepository.getByEmail(toConfirmEmail);
-                if (user) {
-                    yield this.userRepository.confirmEmail(user.ID, emailId);
-                }
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
             }
-        });
-    }
-    registerUser(newUser) {
-        return __awaiter(this, void 0, void 0, function* () {
-            newUser.Password = yield utils_1.hashPassword(newUser.Password);
-            yield this.userRepository.save(newUser);
-            let confirmEmailId = utils_1.generateUniqueId();
-            yield this.userRepository.saveEmailValidate(confirmEmailId, newUser.Email);
-            yield utils_1.sendEmail(newUser.Email, utils_1.confirmEmailTemplate(confirmEmailId));
-        });
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-UserService = __decorate([
-    inversify_1.injectable(),
-    __param(0, inversify_1.inject(constants_1.TYPES.UserRepository)),
-    __metadata("design:paramtypes", [Object])
-], UserService);
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserService = void 0;
+var constants_1 = require("../../config/constants");
+var inversify_1 = require("inversify");
+var utils_1 = require("../utils");
+var UserService = (function () {
+    function UserService(userRepository) {
+        this.userRepository = userRepository;
+    }
+    UserService.prototype.getAllUser = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.userRepository.getAll()];
+                    case 1: return [2, _a.sent()];
+                }
+            });
+        });
+    };
+    UserService.prototype.getById = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                throw new Error('Method not implemented.');
+            });
+        });
+    };
+    UserService.prototype.confirmEmail = function (emailId) {
+        return __awaiter(this, void 0, void 0, function () {
+            var toConfirmEmail, user;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.userRepository.getConfirmationEmail(emailId)];
+                    case 1:
+                        toConfirmEmail = _a.sent();
+                        if (!toConfirmEmail) return [3, 4];
+                        return [4, this.userRepository.getByEmail(toConfirmEmail)];
+                    case 2:
+                        user = _a.sent();
+                        if (!user) return [3, 4];
+                        return [4, this.userRepository.confirmEmail(user.ID, emailId)];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4: return [2];
+                }
+            });
+        });
+    };
+    UserService.prototype.registerUser = function (newUser) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, confirmEmailId;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = newUser;
+                        return [4, utils_1.hashPassword(newUser.Password)];
+                    case 1:
+                        _a.Password = _b.sent();
+                        return [4, this.userRepository.save(newUser)];
+                    case 2:
+                        _b.sent();
+                        confirmEmailId = utils_1.generateUniqueId();
+                        return [4, this.userRepository.saveEmailValidate(confirmEmailId, newUser.Email)];
+                    case 3:
+                        _b.sent();
+                        return [4, utils_1.sendEmail(newUser.Email, utils_1.confirmEmailTemplate(confirmEmailId))];
+                    case 4:
+                        _b.sent();
+                        return [2];
+                }
+            });
+        });
+    };
+    UserService = __decorate([
+        inversify_1.injectable(),
+        __param(0, inversify_1.inject(constants_1.TYPES.UserRepository)),
+        __metadata("design:paramtypes", [Object])
+    ], UserService);
+    return UserService;
+}());
 exports.UserService = UserService;
 //# sourceMappingURL=UserService.js.map

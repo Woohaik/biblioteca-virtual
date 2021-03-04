@@ -10,23 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConfirmEmails = void 0;
-const typeorm_1 = require("typeorm");
-let ConfirmEmails = class ConfirmEmails {
-};
-__decorate([
-    typeorm_1.PrimaryColumn(),
-    __metadata("design:type", String)
-], ConfirmEmails.prototype, "ID", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], ConfirmEmails.prototype, "email", void 0);
-__decorate([
-    typeorm_1.CreateDateColumn(),
-    __metadata("design:type", Date)
-], ConfirmEmails.prototype, "CreatedAt", void 0);
-ConfirmEmails = __decorate([
-    typeorm_1.Entity()
-], ConfirmEmails);
+var typeorm_1 = require("typeorm");
+var ConfirmEmails = (function () {
+    function ConfirmEmails() {
+    }
+    __decorate([
+        typeorm_1.PrimaryColumn(),
+        __metadata("design:type", String)
+    ], ConfirmEmails.prototype, "ID", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], ConfirmEmails.prototype, "email", void 0);
+    __decorate([
+        typeorm_1.CreateDateColumn(),
+        __metadata("design:type", Date)
+    ], ConfirmEmails.prototype, "CreatedAt", void 0);
+    ConfirmEmails = __decorate([
+        typeorm_1.Entity()
+    ], ConfirmEmails);
+    return ConfirmEmails;
+}());
 exports.ConfirmEmails = ConfirmEmails;
 //# sourceMappingURL=ConfirmedEmail.js.map
