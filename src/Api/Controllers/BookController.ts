@@ -7,7 +7,7 @@ import { inject } from 'inversify';
 import { Response } from 'express';
 import { TYPES } from "../../Config/constants"
 import { ResponseDto } from "./../Dtos/ResponseDto"
-import { BookDto } from '../Dtos/BookDto';
+import { BookDto } from '../Dtos/BookDto'; 
 
 @controller('/api/book')
 export class BookController {
