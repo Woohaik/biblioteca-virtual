@@ -10,7 +10,8 @@
     "dev:ts": "nodemon --exec ts-node src/index.ts",
     "watch": "tsc -w",
     "create:migration": "echo mangoVerde",
-    "test": "jest"
+    "test": "jest",
+    "delete": "rimraf ./dist"
   },
   "keywords": [
     "Ingenieria de Software II",
@@ -32,6 +33,7 @@
     "nodemailer": "^6.5.0",
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
     "typeorm": "^0.2.31"
   },
   "devDependencies": {
