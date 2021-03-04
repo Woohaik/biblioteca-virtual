@@ -8,33 +8,21 @@ import {
 
 
 @Entity()
-export class Libro implements IBook {
+export class Booking implements IBooking {
     @PrimaryGeneratedColumn()
     public ID: string;
 
     @Column()
-    public Nombre: string;
+    public IdUser: string;
 
     @Column()
-    public Autor: string;
-
-    @Column({ nullable: true })
-    public Anio: number;
+    public IdBook: string;
 
     @Column()
-    public Genero: string;
+    public StartDate: Date;
 
     @Column()
-    public Calificacion: number;
-
-    @Column()
-    public ISBN: string;
-
-    @Column()
-    public Editorial: string;
-
-    @Column()
-    public Sinopsis: string;
+    public EndDate: Date;
 
     @CreateDateColumn()
     public CreatedAt: Date;

@@ -53,6 +53,7 @@ interface IBook {
     ID?: string;
     Nombre: string; 
     Autor: string; 
+    Anio: number;
     Genero: string; 
     Calificacion: number; 
     ISBN: string; 
@@ -64,6 +65,7 @@ interface IBookDto {
     ID?: string;
     Nombre: string; 
     Autor: string; 
+    Anio: number;
     Genero: string; 
     Calificacion: number; 
     ISBN: string; 
@@ -75,6 +77,25 @@ interface IBookService {
     getAllBooks(): Promise<IBook[]>
 }
 
+interface IBooking {
+    ID?: string;
+    IdUser: string; 
+    IdBook: string; 
+    StartDate: Date; 
+    EndDate: Date; 
+}
+
+interface IBookingDto {
+    ID?: string;
+    IdUser: string; 
+    IdBook: string; 
+    StartDate: Date; 
+    EndDate: Date; 
+}
+
+interface IBookingService {
+    getAllBookings(): Promise<IBooking[]>
+}
 
 interface IRepository<T> {
     getById(id: number): Promise<T | undefined>;
@@ -92,9 +113,8 @@ interface IUserRepository extends IRepository<IUser> {
 }
 
 
-
-
 interface IBookRepository extends IRepository<IBook> { }
+interface IBookingRepository extends IRepository<IBooking> { }
 
   
 
