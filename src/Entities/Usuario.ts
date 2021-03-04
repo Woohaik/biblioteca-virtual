@@ -15,7 +15,7 @@ export class Usuario implements IUser {
     @Column({ unique: true })
     public Email: string;
 
-    @Column()
+    @Column() 
     public ConfirmedEmail: boolean;
 
     @Column()
