@@ -10,6 +10,6 @@ exports.default = {
         dialect: "postgres",
     },
     HOST: "https://bibliotechtest.herokuapp.com",
-    PORT: process.env.PORT || 4000
+    PORT: process.env.PORT || 80
 };
 //# sourceMappingURL=production.js.map
