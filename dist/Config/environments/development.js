@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv").config();
 exports.default = {
     DB: {
-        username: process.env.develop_username,
-        password: process.env.develop_password,
-        database: process.env.develop_database,
-        host: process.env.develop_host,
+        username: process.env.DEVELOP_USERNAME,
+        password: process.env.DEVELOP_PASSWORD,
+        database: process.env.DEVELOP_DATABASE,
+        host: process.env.DEVELOP_HOST,
         dialect: "postgres",
     },
     HOST: `http://localhost:${process.env.PORT || 4000}`,
