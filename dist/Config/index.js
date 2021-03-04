@@ -7,7 +7,7 @@ require("dotenv").config();
 const production_1 = __importDefault(require("./environments/production"));
 const development_1 = __importDefault(require("./environments/development"));
 const { NODE_ENV } = process.env;
-const enviroment = Object.assign(Object.assign({}, (NODE_ENV === "DEVELOPMENT" ? development_1.default : production_1.default)), { __IsProd__: NODE_ENV === "PRODUCTION", EMAIL: {
+const enviroment = Object.assign(Object.assign({}, (NODE_ENV === "development" ? development_1.default : production_1.default)), { __IsProd__: NODE_ENV === "production", EMAIL: {
         password: process.env.EMAIL_PASSWORD,
         username: process.env.EMAIL_USER,
     }, SECRET: (() => {
