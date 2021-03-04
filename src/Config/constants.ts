@@ -4,5 +4,9 @@ export const TYPES = {
 
     // Books
     BookService: Symbol.for('BookService'),
-    BookRepository: Symbol.for('BookRepository')
+    BookRepository: Symbol.for('BookRepository'),
+
+    // Bookings
+    BookingService: Symbol.for('BookingService'),
+    BookingRepository: Symbol.for('BookingRepository')
 };
