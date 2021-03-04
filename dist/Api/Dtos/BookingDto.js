@@ -5,7 +5,7 @@ class BookingDto {
     constructor(booking) {
         this.ID = booking.ID;
         this.IdUser = booking.IdUser;
-        this.IdBook = booking.IdBook;
+        this.IdBook = booking.IdBook + "xd";
         this.StartDate = booking.StartDate;
         this.EndDate = booking.EndDate;
     }
