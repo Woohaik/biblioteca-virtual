@@ -16,7 +16,6 @@ type Enviroment = {
     HOST: string
 }
 
-
 interface IUser {
     ID: number;
     Email: string;
@@ -49,26 +48,26 @@ interface IUserService {
 
 interface IBook {
     ID?: number;
-    Nombre: string;
-    Autor: string;
-    Anio: number;
-    Genero: string;
-    Calificacion: number;
+    Name: string;
+    Author: string;
+    PublicationYear: number;
+    Genre: string;
+    Rate: number;
     ISBN: string;
     Editorial: string;
-    Sinopsis: string;
+    Synopsis: string;
 }
 
 interface IBookDto {
     ID?: number;
-    Nombre: string;
-    Autor: string;
-    Anio: number;
-    Genero: string;
-    Calificacion: number;
+    Name: string;
+    Author: string;
+    PublicationYear: number;
+    Genre: string;
+    Rate: number;
     ISBN: string;
     Editorial: string;
-    Sinopsis: string;
+    Synopsis: string;
 }
 
 interface IBookService {
@@ -91,6 +90,17 @@ interface IBookingDto {
     EndDate: Date;
 }
 
+interface IValoraciones {
+    ID?: number;
+    UserId: number;
+    BookId: number;
+    Rate: number;
+    Commentary: string;
+    CreatedAt: Date;
+}
+
+
+
 interface IBookingService {
     getAllBookings(): Promise<IBooking[]>
 }
@@ -109,7 +119,6 @@ interface IUserRepository extends IRepository<IUser> {
     confirmEmail(userId: number, confirmMailId: string): Promise<void>;
     getConfirmationEmail(confirmMailId: string): Promise<string | undefined>;
 }
-
 
 interface IBookRepository extends IRepository<IBook> { }
 interface IBookingRepository extends IRepository<IBooking> { }

@@ -11,5 +11,4 @@ export class BookingDto implements IBookingDto {
         this.StartDate = booking.StartDate;
         this.EndDate = booking.EndDate;
     }
-
 }

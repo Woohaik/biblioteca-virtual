@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
 import { getConnection, Repository } from "typeorm";
-import { Libro } from "../../Entities/Libros"
+import { Libro } from "../../Entities/Libro"
 
 @injectable()
 export class BookRepository implements IBookRepository {
@@ -27,13 +27,13 @@ export class BookRepository implements IBookRepository {
 
     async save(entity: IBook): Promise<void> {
         await this.bookConnection.insert({
-            Nombre: entity.Nombre,
-            Autor: entity.Autor,
-            Genero: entity.Genero,
-            Calificacion: entity.Calificacion,
+            Name: entity.Name,
+            Author: entity.Author,
+            Genre: entity.Genre,
+            Rate: entity.Rate,
             ISBN: entity.ISBN,
             Editorial: entity.Editorial,
-            Sinopsis: entity.Sinopsis
+            Synopsis: entity.Synopsis
         });
     }
 

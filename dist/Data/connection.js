@@ -38,11 +38,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getDbConnection = void 0;
 var typeorm_1 = require("typeorm");
-var Usuario_1 = require("../Entities/Usuario");
-var Libros_1 = require("../Entities/Libros");
-var ConfirmedEmail_1 = require("../Entities/ConfirmedEmail");
-var Reservas_1 = require("../Entities/Reservas");
 var Config_1 = require("../Config");
+var Usuario_1 = require("../Entities/Usuario");
+var Libro_1 = require("../Entities/Libro");
+var ConfirmedEmail_1 = require("../Entities/ConfirmedEmail");
+var Valoraciones_1 = require("../Entities/Valoraciones");
+var Reservas_1 = require("../Entities/Reservas");
 var getDbConnection = function () { return __awaiter(void 0, void 0, void 0, function () {
     var entities, conn;
     return __generator(this, function (_a) {
@@ -50,9 +51,10 @@ var getDbConnection = function () { return __awaiter(void 0, void 0, void 0, fun
             case 0:
                 entities = [
                     Usuario_1.Usuario,
-                    Libros_1.Libro,
+                    Libro_1.Libro,
                     ConfirmedEmail_1.ConfirmEmails,
-                    Reservas_1.Booking
+                    Reservas_1.Booking,
+                    Valoraciones_1.Valoraciones
                 ];
                 return [4, typeorm_1.createConnection({
                         type: Config_1.CONFIG.DB.dialect,

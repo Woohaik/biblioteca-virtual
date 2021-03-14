@@ -13,28 +13,28 @@ export class Libro implements IBook {
     public ID: number;
 
     @Column()
-    public Nombre: string;
+    public Name: string;
 
     @Column()
-    public Autor: string;
+    public Genre: string;
+
+    @Column()
+    public Author: string;
+
+    @Column()
+    public Synopsis: string;
 
     @Column({ nullable: true })
-    public Anio: number;
+    public PublicationYear: number;
 
     @Column()
-    public Genero: string;
-
-    @Column()
-    public Calificacion: number;
-
-    @Column()
-    public ISBN: string;
+    public Rate: number;
 
     @Column()
     public Editorial: string;
 
     @Column()
-    public Sinopsis: string;
+    public ISBN: string;
 
     @CreateDateColumn()
     public CreatedAt: Date;
