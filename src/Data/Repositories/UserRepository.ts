@@ -41,8 +41,7 @@ export class UserRepository implements IUserRepository {
             Password: entity.Password,
             Username: entity.Username,
             ConfirmedEmail: false,
-            LastName: entity.LastName,
-            RefreshToken: ""
+            LastName: entity.LastName
         });
     }
 
@@ -59,7 +58,7 @@ export class UserRepository implements IUserRepository {
         })
     }
 
-    async confirmEmail(userId: string, confirmMailId: string): Promise<void> {
+    async confirmEmail(userId: number, confirmMailId: string): Promise<void> {
         await this.emailConnection.delete({ ID: confirmMailId })
         await this.userConnection.update({ ID: userId }, { ConfirmedEmail: true })
     }

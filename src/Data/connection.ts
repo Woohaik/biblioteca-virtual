@@ -4,7 +4,7 @@ import { Libro } from "../Entities/Libros";
 import { ConfirmEmails } from "../Entities/ConfirmedEmail";
 import { Booking } from "../Entities/Reservas";
 
-import ENVIRONMENTS from "../Config"
+import { CONFIG as ENVIRONMENTS } from "../Config"
 
 export const getDbConnection = async () => {
     const entities = [

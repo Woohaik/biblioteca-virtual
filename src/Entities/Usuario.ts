@@ -10,13 +10,7 @@ import {
 @Entity()
 export class Usuario implements IUser {
     @PrimaryGeneratedColumn()
-    public ID: string;
-
-    @Column({ unique: true })
-    public Email: string;
-
-    @Column() 
-    public ConfirmedEmail: boolean;
+    public ID: number;
 
     @Column()
     public Name: string;
@@ -27,11 +21,17 @@ export class Usuario implements IUser {
     @Column()
     public Username: string;
 
+    @Column({ unique: true })
+    public Email: string;
+
     @Column()
     public Password: string;
 
-    @Column({ nullable: true })
-    public RefreshToken: string;
+    @Column()
+    public ConfirmedEmail: boolean;
+
+    @Column({ default: "user" })
+    public Rol: string;
 
     @CreateDateColumn()
     public CreatedAt: Date;

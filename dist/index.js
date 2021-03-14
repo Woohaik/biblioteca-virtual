@@ -63,7 +63,7 @@ var inversify_express_utils_1 = require("inversify-express-utils");
 var bodyParser = __importStar(require("body-parser"));
 var inversify_1 = require("inversify");
 var inversify_config_1 = require("./inversify.config");
-var Config_1 = __importDefault(require("./Config"));
+var Config_1 = require("./Config");
 var cors_1 = __importDefault(require("cors"));
 (function () { return __awaiter(void 0, void 0, void 0, function () {
     var container, server, serverInstance;
@@ -83,8 +83,8 @@ var cors_1 = __importDefault(require("cors"));
                     app.use(cors_1.default({ origin: "*" }));
                 });
                 serverInstance = server.build();
-                serverInstance.listen(Config_1.default.PORT, function () {
-                    console.log("Server started on port " + Config_1.default.PORT + " :)");
+                serverInstance.listen(Config_1.CONFIG.PORT, function () {
+                    console.log("Server started on port " + Config_1.CONFIG.PORT + " :)");
                 });
                 return [2];
         }

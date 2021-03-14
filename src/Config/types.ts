@@ -18,21 +18,19 @@ type Enviroment = {
 
 
 interface IUser {
-    ID: string;
+    ID: number;
     Email: string;
     Name: string;
     Password: string;
     Username: string;
     LastName: string;
     ConfirmedEmail: boolean;
-
-    RefreshToken: string;
     CreatedAt: Date;
     UpdatedAt: Date;
 }
 
 interface IUserDto {
-    ID?: string;
+    ID?: number;
     Email: string;
     Name: string;
     Username: string;
@@ -50,26 +48,26 @@ interface IUserService {
 }
 
 interface IBook {
-    ID?: string;
-    Nombre: string; 
-    Autor: string; 
+    ID?: number;
+    Nombre: string;
+    Autor: string;
     Anio: number;
-    Genero: string; 
-    Calificacion: number; 
-    ISBN: string; 
-    Editorial: string; 
+    Genero: string;
+    Calificacion: number;
+    ISBN: string;
+    Editorial: string;
     Sinopsis: string;
 }
 
 interface IBookDto {
-    ID?: string;
-    Nombre: string; 
-    Autor: string; 
+    ID?: number;
+    Nombre: string;
+    Autor: string;
     Anio: number;
-    Genero: string; 
-    Calificacion: number; 
-    ISBN: string; 
-    Editorial: string; 
+    Genero: string;
+    Calificacion: number;
+    ISBN: string;
+    Editorial: string;
     Sinopsis: string;
 }
 
@@ -78,19 +76,19 @@ interface IBookService {
 }
 
 interface IBooking {
-    ID?: string;
-    IdUser: string; 
-    IdBook: string; 
-    StartDate: Date; 
-    EndDate: Date; 
+    ID?: number;
+    UserId: number;
+    BookId: number;
+    StartDate: Date;
+    EndDate: Date;
 }
 
 interface IBookingDto {
-    ID?: string;
-    IdUser: string; 
-    IdBook: string; 
-    StartDate: Date; 
-    EndDate: Date; 
+    ID?: number;
+    UserId: number;
+    BookId: number;
+    StartDate: Date;
+    EndDate: Date;
 }
 
 interface IBookingService {
@@ -108,7 +106,7 @@ interface IRepository<T> {
 interface IUserRepository extends IRepository<IUser> {
     getByEmail(email: string): Promise<IUser | undefined>;
     saveEmailValidate(id: string, email: string): Promise<void>;
-    confirmEmail(userId: string, confirmMailId: string): Promise<void>;
+    confirmEmail(userId: number, confirmMailId: string): Promise<void>;
     getConfirmationEmail(confirmMailId: string): Promise<string | undefined>;
 }
 
@@ -116,5 +114,5 @@ interface IUserRepository extends IRepository<IUser> {
 interface IBookRepository extends IRepository<IBook> { }
 interface IBookingRepository extends IRepository<IBooking> { }
 
-  
+
 

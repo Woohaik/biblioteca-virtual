@@ -16,7 +16,7 @@ var Libro = (function () {
     }
     __decorate([
         typeorm_1.PrimaryGeneratedColumn(),
-        __metadata("design:type", String)
+        __metadata("design:type", Number)
     ], Libro.prototype, "ID", void 0);
     __decorate([
         typeorm_1.Column(),

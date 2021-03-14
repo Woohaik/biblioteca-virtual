@@ -9,14 +9,15 @@ import {
 
 @Entity()
 export class Booking implements IBooking {
+
     @PrimaryGeneratedColumn()
-    public ID: string;
+    public ID: number;
 
     @Column()
-    public IdUser: string;
+    public UserId: number;
 
     @Column()
-    public IdBook: string;
+    public BookId: number;
 
     @Column()
     public StartDate: Date;

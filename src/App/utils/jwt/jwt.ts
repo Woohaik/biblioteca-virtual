@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import CONFIG from "./../../../Config";
+import { CONFIG } from "./../../../Config";
 
 
 

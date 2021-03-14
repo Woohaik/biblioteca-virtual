@@ -16,16 +16,16 @@ var Booking = (function () {
     }
     __decorate([
         typeorm_1.PrimaryGeneratedColumn(),
-        __metadata("design:type", String)
+        __metadata("design:type", Number)
     ], Booking.prototype, "ID", void 0);
     __decorate([
         typeorm_1.Column(),
-        __metadata("design:type", String)
-    ], Booking.prototype, "IdUser", void 0);
+        __metadata("design:type", Number)
+    ], Booking.prototype, "UserId", void 0);
     __decorate([
         typeorm_1.Column(),
-        __metadata("design:type", String)
-    ], Booking.prototype, "IdBook", void 0);
+        __metadata("design:type", Number)
+    ], Booking.prototype, "BookId", void 0);
     __decorate([
         typeorm_1.Column(),
         __metadata("design:type", Date)

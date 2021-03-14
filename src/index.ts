@@ -3,7 +3,7 @@ import { InversifyExpressServer } from 'inversify-express-utils';
 import * as bodyParser from 'body-parser';
 import { Container } from "inversify";
 import { bindings } from "./inversify.config";
-import CONFIG from "./Config"
+import { CONFIG } from "./Config"
 import cors from "cors";
 
 (async () => {

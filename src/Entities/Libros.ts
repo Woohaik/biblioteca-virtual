@@ -10,7 +10,7 @@ import {
 @Entity()
 export class Libro implements IBook {
     @PrimaryGeneratedColumn()
-    public ID: string;
+    public ID: number;
 
     @Column()
     public Nombre: string;

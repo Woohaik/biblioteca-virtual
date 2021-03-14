@@ -4,8 +4,8 @@ exports.BookingDto = void 0;
 var BookingDto = (function () {
     function BookingDto(booking) {
         this.ID = booking.ID;
-        this.IdUser = booking.IdUser;
-        this.IdBook = booking.IdBook + "xd";
+        this.UserId = booking.UserId;
+        this.BookId = booking.UserId;
         this.StartDate = booking.StartDate;
         this.EndDate = booking.EndDate;
     }
