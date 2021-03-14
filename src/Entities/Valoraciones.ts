@@ -2,14 +2,12 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
-    CreateDateColumn,
-    UpdateDateColumn
+    CreateDateColumn
 } from "typeorm";
 
 
 @Entity()
-export class Booking implements IBooking {
-
+export class Valoraciones implements IValoraciones {
     @PrimaryGeneratedColumn()
     public ID: number;
 
@@ -20,14 +18,11 @@ export class Booking implements IBooking {
     public BookId: number;
 
     @Column()
-    public StartDate: Date;
+    public Rate: number;
 
     @Column()
-    public EndDate: Date;
+    public Commentary: string;
 
     @CreateDateColumn()
     public CreatedAt: Date;
-
-    @UpdateDateColumn()
-    public UpdatedAt: Date;
 }

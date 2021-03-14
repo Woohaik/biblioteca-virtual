@@ -112,8 +112,7 @@ var UserRepository = (function () {
                             Password: entity.Password,
                             Username: entity.Username,
                             ConfirmedEmail: false,
-                            LastName: entity.LastName,
-                            RefreshToken: ""
+                            LastName: entity.LastName
                         })];
                     case 1:
                         _a.sent();

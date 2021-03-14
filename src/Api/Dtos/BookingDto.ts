@@ -1,15 +1,14 @@
 export class BookingDto implements IBookingDto {
-    ID?: string;
-    IdUser: string;
-    IdBook: string;
+    ID?: number;
+    UserId: number;
+    BookId: number;
     StartDate: Date;
     EndDate: Date;
     constructor(booking: IBooking) {
         this.ID = booking.ID;
-        this.IdUser = booking.IdUser;
-        this.IdBook = booking.IdBook + "xd";
+        this.UserId = booking.UserId;
+        this.BookId = booking.UserId;
         this.StartDate = booking.StartDate;
         this.EndDate = booking.EndDate;
     }
-
 }

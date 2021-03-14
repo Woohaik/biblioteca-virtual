@@ -48,11 +48,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookRepository = void 0;
 var inversify_1 = require("inversify");
 var typeorm_1 = require("typeorm");
-var Libros_1 = require("../../Entities/Libros");
+var Libro_1 = require("../../Entities/Libro");
 var BookRepository = (function () {
     function BookRepository() {
         var conn = typeorm_1.getConnection();
-        this.bookConnection = conn.getRepository(Libros_1.Libro);
+        this.bookConnection = conn.getRepository(Libro_1.Libro);
     }
     BookRepository.prototype.edit = function (id, entity) {
         console.log(id);
@@ -78,13 +78,13 @@ var BookRepository = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, this.bookConnection.insert({
-                            Nombre: entity.Nombre,
-                            Autor: entity.Autor,
-                            Genero: entity.Genero,
-                            Calificacion: entity.Calificacion,
+                            Name: entity.Name,
+                            Author: entity.Author,
+                            Genre: entity.Genre,
+                            Rate: entity.Rate,
                             ISBN: entity.ISBN,
                             Editorial: entity.Editorial,
-                            Sinopsis: entity.Sinopsis
+                            Synopsis: entity.Synopsis
                         })];
                     case 1:
                         _a.sent();

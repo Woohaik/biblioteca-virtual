@@ -16,23 +16,20 @@ type Enviroment = {
     HOST: string
 }
 
-
 interface IUser {
-    ID: string;
+    ID: number;
     Email: string;
     Name: string;
     Password: string;
     Username: string;
     LastName: string;
     ConfirmedEmail: boolean;
-
-    RefreshToken: string;
     CreatedAt: Date;
     UpdatedAt: Date;
 }
 
 interface IUserDto {
-    ID?: string;
+    ID?: number;
     Email: string;
     Name: string;
     Username: string;
@@ -50,27 +47,27 @@ interface IUserService {
 }
 
 interface IBook {
-    ID?: string;
-    Nombre: string; 
-    Autor: string; 
-    Anio: number;
-    Genero: string; 
-    Calificacion: number; 
-    ISBN: string; 
-    Editorial: string; 
-    Sinopsis: string;
+    ID?: number;
+    Name: string;
+    Author: string;
+    PublicationYear: number;
+    Genre: string;
+    Rate: number;
+    ISBN: string;
+    Editorial: string;
+    Synopsis: string;
 }
 
 interface IBookDto {
-    ID?: string;
-    Nombre: string; 
-    Autor: string; 
-    Anio: number;
-    Genero: string; 
-    Calificacion: number; 
-    ISBN: string; 
-    Editorial: string; 
-    Sinopsis: string;
+    ID?: number;
+    Name: string;
+    Author: string;
+    PublicationYear: number;
+    Genre: string;
+    Rate: number;
+    ISBN: string;
+    Editorial: string;
+    Synopsis: string;
 }
 
 interface IBookService {
@@ -78,20 +75,31 @@ interface IBookService {
 }
 
 interface IBooking {
-    ID?: string;
-    IdUser: string; 
-    IdBook: string; 
-    StartDate: Date; 
-    EndDate: Date; 
+    ID?: number;
+    UserId: number;
+    BookId: number;
+    StartDate: Date;
+    EndDate: Date;
 }
 
 interface IBookingDto {
-    ID?: string;
-    IdUser: string; 
-    IdBook: string; 
-    StartDate: Date; 
-    EndDate: Date; 
+    ID?: number;
+    UserId: number;
+    BookId: number;
+    StartDate: Date;
+    EndDate: Date;
 }
+
+interface IValoraciones {
+    ID?: number;
+    UserId: number;
+    BookId: number;
+    Rate: number;
+    Commentary: string;
+    CreatedAt: Date;
+}
+
+
 
 interface IBookingService {
     getAllBookings(): Promise<IBooking[]>
@@ -108,13 +116,12 @@ interface IRepository<T> {
 interface IUserRepository extends IRepository<IUser> {
     getByEmail(email: string): Promise<IUser | undefined>;
     saveEmailValidate(id: string, email: string): Promise<void>;
-    confirmEmail(userId: string, confirmMailId: string): Promise<void>;
+    confirmEmail(userId: number, confirmMailId: string): Promise<void>;
     getConfirmationEmail(confirmMailId: string): Promise<string | undefined>;
 }
-
 
 interface IBookRepository extends IRepository<IBook> { }
 interface IBookingRepository extends IRepository<IBooking> { }
 
-  
+
 

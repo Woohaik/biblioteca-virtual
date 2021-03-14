@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import CONFIG from "../../../Config"
+import { CONFIG } from "../../../Config"
 
 
 export const sendEmail = async (to: string, bodyFunction: any) => {

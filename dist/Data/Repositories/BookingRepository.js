@@ -79,8 +79,8 @@ var BookingRepository = (function () {
                 switch (_a.label) {
                     case 0: return [4, this.bookingConnection.insert({
                             ID: entity.ID,
-                            IdUser: entity.IdUser,
-                            IdBook: entity.IdBook,
+                            UserId: entity.UserId,
+                            BookId: entity.BookId,
                             StartDate: entity.StartDate,
                             EndDate: entity.EndDate
                         })];

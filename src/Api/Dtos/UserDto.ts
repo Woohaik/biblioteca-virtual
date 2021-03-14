@@ -1,5 +1,5 @@
 export class UserDto implements IUserDto {
-    ID?: string | undefined;
+    ID?: number | undefined;
     Name: string;
     LastName: string;
     Username: string;

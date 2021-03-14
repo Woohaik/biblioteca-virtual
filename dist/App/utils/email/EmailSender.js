@@ -52,7 +52,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendEmail = void 0;
 var nodemailer_1 = __importDefault(require("nodemailer"));
-var Config_1 = __importDefault(require("../../../Config"));
+var Config_1 = require("../../../Config");
 var sendEmail = function (to, bodyFunction) { return __awaiter(void 0, void 0, void 0, function () {
     var transporter, info;
     return __generator(this, function (_a) {
@@ -63,8 +63,8 @@ var sendEmail = function (to, bodyFunction) { return __awaiter(void 0, void 0, v
                     port: 587,
                     secure: false,
                     auth: {
-                        user: Config_1.default.EMAIL.username,
-                        pass: Config_1.default.EMAIL.password,
+                        user: Config_1.CONFIG.EMAIL.username,
+                        pass: Config_1.CONFIG.EMAIL.password,
                     },
                 });
                 return [4, transporter.sendMail(__assign({ from: '"Bibliotech 👻" <foo@example.com>', to: to }, bodyFunction))];

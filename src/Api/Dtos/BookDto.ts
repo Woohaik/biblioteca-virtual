@@ -1,21 +1,21 @@
 export class BookDto implements IBookDto {
-    Nombre: string;
-    Autor: string;
-    Anio: number;
-    Genero: string;
-    Calificacion: number;
+    Name: string;
+    Author: string;
+    PublicationYear: number;
+    Genre: string;
+    Rate: number;
     ISBN: string;
     Editorial: string;
-    Sinopsis: string;
+    Synopsis: string;
     constructor(book : IBook){
-        this.Nombre = book.Nombre;
-        this.Autor = book.Autor;
-        this.Anio = book.Anio;
-        this.Genero = book.Genero;
+        this.Name = book.Name;
+        this.Author = book.Author;
+        this.PublicationYear = book.PublicationYear;
+        this.Genre = book.Genre;
         this.Editorial = book.Editorial;
         this.ISBN = book.ISBN;
-        this.Calificacion = book.Calificacion;
-        this.Sinopsis = book.Sinopsis;
+        this.Rate = book.Rate;
+        this.Synopsis = book.Synopsis;
     }
     
 }

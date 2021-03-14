@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CONFIG = void 0;
 require("dotenv").config();
 var production_1 = __importDefault(require("./environments/production"));
 var development_1 = __importDefault(require("./environments/development"));
@@ -26,5 +27,5 @@ var enviroment = __assign(__assign({}, (NODE_ENV === "development" ? development
             throw new Error("SECRET NO VALIDO");
         return process.env.JWT_SECRET || "";
     })() });
-exports.default = enviroment;
+exports.CONFIG = enviroment;
 //# sourceMappingURL=index.js.map

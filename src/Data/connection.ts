@@ -1,17 +1,19 @@
 import { createConnection } from "typeorm";
+import { CONFIG as ENVIRONMENTS } from "../Config"
+// Entidades
 import { Usuario } from "../Entities/Usuario";
-import { Libro } from "../Entities/Libros";
+import { Libro } from "../Entities/Libro";
 import { ConfirmEmails } from "../Entities/ConfirmedEmail";
+import { Valoraciones } from "../Entities/Valoraciones";
 import { Booking } from "../Entities/Reservas";
-
-import ENVIRONMENTS from "../Config"
 
 export const getDbConnection = async () => {
     const entities = [
         Usuario,
         Libro,
         ConfirmEmails,
-        Booking
+        Booking,
+        Valoraciones
     ];
     const conn = await createConnection({
         type: ENVIRONMENTS.DB.dialect,

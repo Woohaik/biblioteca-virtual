@@ -3,7 +3,7 @@ require("dotenv").config();
 import PRODUCTION from "./environments/production";
 import DEVELOPMENT from "./environments/development";
 
-const { NODE_ENV } = process.env;  
+const { NODE_ENV } = process.env;
 
 const enviroment: Enviroment = {
     ...(NODE_ENV === "development" ? DEVELOPMENT : PRODUCTION),
@@ -16,7 +16,8 @@ const enviroment: Enviroment = {
         if (typeof process.env.JWT_SECRET === "undefined") throw new Error("SECRET NO VALIDO")
         return process.env.JWT_SECRET || ""
     })()
-
 };
- 
-export default enviroment;
+
+export {
+    enviroment as CONFIG
+};
