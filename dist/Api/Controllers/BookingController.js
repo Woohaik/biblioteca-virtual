@@ -76,6 +76,22 @@ var BookingController = (function () {
             });
         });
     };
+    BookingController.prototype.addBooking = function (_, newBooking) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log(newBooking);
+                        return [4, this.bookingService.addBooking(1, 1)];
+                    case 1:
+                        _a.sent();
+                        return [2, new ResponseDto_1.ResponseDto([], {
+                                message: "Reserva Agregada"
+                            })];
+                }
+            });
+        });
+    };
     __decorate([
         inversify_express_utils_1.httpGet("/"),
         __param(0, inversify_express_utils_1.response()),
@@ -83,6 +99,14 @@ var BookingController = (function () {
         __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", Promise)
     ], BookingController.prototype, "getBookings", null);
+    __decorate([
+        inversify_express_utils_1.httpPost("/"),
+        __param(0, inversify_express_utils_1.response()),
+        __param(1, inversify_express_utils_1.requestBody()),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object, Object]),
+        __metadata("design:returntype", Promise)
+    ], BookingController.prototype, "addBooking", null);
     BookingController = __decorate([
         inversify_express_utils_1.controller('/api/booking'),
         __param(0, inversify_1.inject(constants_1.TYPES.BookingService)),

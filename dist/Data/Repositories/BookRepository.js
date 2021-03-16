@@ -82,6 +82,7 @@ var BookRepository = (function () {
                             Author: entity.Author,
                             Genre: entity.Genre,
                             Rate: entity.Rate,
+                            PublicationYear: entity.PublicationYear,
                             ISBN: entity.ISBN,
                             Editorial: entity.Editorial,
                             Synopsis: entity.Synopsis

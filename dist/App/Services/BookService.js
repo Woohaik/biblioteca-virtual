@@ -65,6 +65,18 @@ var BookService = (function () {
             });
         });
     };
+    BookService.prototype.addBook = function (newBook) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.bookRepository.save(newBook)];
+                    case 1:
+                        _a.sent();
+                        return [2];
+                }
+            });
+        });
+    };
     BookService = __decorate([
         inversify_1.injectable(),
         __param(0, inversify_1.inject(constants_1.TYPES.BookRepository)),

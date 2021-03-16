@@ -51,10 +51,40 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookingService = void 0;
 var constants_1 = require("../../config/constants");
 var inversify_1 = require("inversify");
+var Reservas_1 = require("../../Entities/Reservas");
 var BookingService = (function () {
-    function BookingService(bookingRepository) {
+    function BookingService(bookingRepository, userRepository, bookRepository) {
         this.bookingRepository = bookingRepository;
+        this.userRepository = userRepository;
+        this.bookRepository = bookRepository;
     }
+    BookingService.prototype.addBooking = function (userId, bookId) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user, book, booking;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.userRepository.getById(userId)];
+                    case 1:
+                        user = _a.sent();
+                        return [4, this.bookRepository.getById(bookId)];
+                    case 2:
+                        book = _a.sent();
+                        booking = new Reservas_1.Booking();
+                        if (user) {
+                            console.log(user);
+                            booking.User = user;
+                        }
+                        if (book) {
+                            booking.Book = book;
+                            booking.StartDate = new Date();
+                            booking.EndDate = new Date();
+                        }
+                        this.bookingRepository.save(booking);
+                        return [2];
+                }
+            });
+        });
+    };
     BookingService.prototype.getAllBookings = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -68,7 +98,9 @@ var BookingService = (function () {
     BookingService = __decorate([
         inversify_1.injectable(),
         __param(0, inversify_1.inject(constants_1.TYPES.BookingRepository)),
-        __metadata("design:paramtypes", [Object])
+        __param(1, inversify_1.inject(constants_1.TYPES.UserRepository)),
+        __param(2, inversify_1.inject(constants_1.TYPES.BookRepository)),
+        __metadata("design:paramtypes", [Object, Object, Object])
     ], BookingService);
     return BookingService;
 }());

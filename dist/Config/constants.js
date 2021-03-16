@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TYPES = void 0;
-exports.TYPES = {
+var TYPES = {
     UserService: Symbol.for('UserService'),
     UserRepository: Symbol.for('UserRepository'),
     BookService: Symbol.for('BookService'),
@@ -9,4 +9,5 @@ exports.TYPES = {
     BookingService: Symbol.for('BookingService'),
     BookingRepository: Symbol.for('BookingRepository')
 };
+exports.TYPES = TYPES;
 //# sourceMappingURL=constants.js.map

@@ -3,8 +3,11 @@ import {
     PrimaryGeneratedColumn,
     Column,
     CreateDateColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
+    ManyToOne
 } from "typeorm";
+import { Libro } from "./Libro";
+import { Usuario } from "./Usuario";
 
 
 @Entity()
@@ -13,11 +16,11 @@ export class Booking implements IBooking {
     @PrimaryGeneratedColumn()
     public ID: number;
 
-    @Column()
-    public UserId: number;
+    @ManyToOne(() => Libro, (libro) => libro.ID)
+    Book: Libro;
 
-    @Column()
-    public BookId: number;
+    @ManyToOne(() => Usuario, (usuario) => usuario.ID)
+    User: Usuario;
 
     @Column()
     public StartDate: Date;
@@ -30,4 +33,6 @@ export class Booking implements IBooking {
 
     @UpdateDateColumn()
     public UpdatedAt: Date;
+
+
 }

@@ -12,8 +12,6 @@ export class BookingRepository implements IBookingRepository {
     edit(id: number, entity: IBooking): Promise<void> {
         console.log(id);
         console.log(entity);
-
-
         throw new Error("Method not implemented.");
     }
     delete(id: number): Promise<void> {
@@ -27,11 +25,10 @@ export class BookingRepository implements IBookingRepository {
 
     async save(entity: IBooking): Promise<void> {
         await this.bookingConnection.insert({
-            ID: entity.ID,
-            UserId: entity.UserId,
-            BookId: entity.BookId,
+            User: entity.User,
+            Book: entity.Book,
             StartDate: entity.StartDate,
-            EndDate: entity.EndDate
+            EndDate: entity.EndDate,
         });
     }
 

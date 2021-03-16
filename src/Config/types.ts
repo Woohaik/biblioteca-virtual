@@ -56,6 +56,8 @@ interface IBook {
     ISBN: string;
     Editorial: string;
     Synopsis: string;
+    CreatedAt: Date;
+    UpdatedAt: Date;
 }
 
 interface IBookDto {
@@ -72,12 +74,13 @@ interface IBookDto {
 
 interface IBookService {
     getAllBooks(): Promise<IBook[]>
+    addBook(param: IBook): Promise<void>
 }
 
 interface IBooking {
     ID?: number;
-    UserId: number;
-    BookId: number;
+    User: IUser;
+    Book: IBook;
     StartDate: Date;
     EndDate: Date;
 }
@@ -103,6 +106,7 @@ interface IValoraciones {
 
 interface IBookingService {
     getAllBookings(): Promise<IBooking[]>
+    addBooking(userId: number, bookId: number): Promise<void>
 }
 
 interface IRepository<T> {
