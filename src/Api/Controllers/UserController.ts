@@ -9,7 +9,7 @@ import {
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { Response } from 'express';
-import { TYPES } from "./../../Config/constants"
+import { INVERSIFY_TYPES } from "../../Config"
 import { ResponseDto } from "./../Dtos/ResponseDto"
 import { validateUser } from "./../utils"
 import { UserDto } from './../Dtos/UserDto';
@@ -17,7 +17,7 @@ import { UserDto } from './../Dtos/UserDto';
 @controller('/api/user')
 export class UserController implements interfaces.Controller {
 
-    constructor(@inject(TYPES.UserService) private userService: IUserService) { }
+    constructor(@inject(INVERSIFY_TYPES.UserService) private userService: IUserService) { }
 
     @httpGet("/")
     public async getAllUsers(): Promise<ResponseDto> {

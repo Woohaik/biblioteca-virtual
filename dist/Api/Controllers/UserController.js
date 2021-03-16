@@ -24,7 +24,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const inversify_express_utils_1 = require("inversify-express-utils");
 const inversify_1 = require("inversify");
-const constants_1 = require("./../../Config/constants");
+const Config_1 = require("../../Config");
 const ResponseDto_1 = require("./../Dtos/ResponseDto");
 const utils_1 = require("./../utils");
 const UserDto_1 = require("./../Dtos/UserDto");
@@ -82,7 +82,7 @@ __decorate([
 ], UserController.prototype, "register", null);
 UserController = __decorate([
     inversify_express_utils_1.controller('/api/user'),
-    __param(0, inversify_1.inject(constants_1.TYPES.UserService)),
+    __param(0, inversify_1.inject(Config_1.INVERSIFY_TYPES.UserService)),
     __metadata("design:paramtypes", [Object])
 ], UserController);
 exports.UserController = UserController;

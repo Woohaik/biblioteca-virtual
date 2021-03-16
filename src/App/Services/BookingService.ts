@@ -1,12 +1,12 @@
-import { TYPES } from '../../config/constants';
+import { INVERSIFY_TYPES } from './../../Config';
 import { inject, injectable } from 'inversify';
 import { Booking } from '../../Entities/Reservas';
 
 @injectable()
 export class BookingService implements IBookingService {
-    constructor(@inject(TYPES.BookingRepository) private bookingRepository: IBookingRepository,
-        @inject(TYPES.UserRepository) private userRepository: IUserRepository,
-        @inject(TYPES.BookRepository) private bookRepository: IBookRepository
+    constructor(@inject(INVERSIFY_TYPES.BookingRepository) private bookingRepository: IBookingRepository,
+        @inject(INVERSIFY_TYPES.UserRepository) private userRepository: IUserRepository,
+        @inject(INVERSIFY_TYPES.BookRepository) private bookRepository: IBookRepository
     ) { }
 
 

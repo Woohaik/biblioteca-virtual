@@ -7,13 +7,13 @@ import {
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { Response } from 'express';
-import { TYPES } from "./../../Config/constants"
+import { INVERSIFY_TYPES } from "./../../Config";
 import { ResponseDto } from "./../Dtos/ResponseDto"
 import { BookingDto } from './../Dtos/BookingDto';
 
 @controller('/api/booking')
 export class BookingController {
-    constructor(@inject(TYPES.BookingService) private bookingService: IBookingService) { }
+    constructor(@inject(INVERSIFY_TYPES.BookingService) private bookingService: IBookingService) { }
     @httpGet("/")
     public async getBookings(
         @response() _: Response

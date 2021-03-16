@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.bindings = void 0;
 const inversify_1 = require("inversify");
-const constants_1 = require("./Config/constants");
+const Config_1 = require("./Config/");
 require("./Api/Controllers");
 const UserService_1 = require("./App/Services/UserService");
 const BookService_1 = require("./App/Services/BookService");
@@ -22,11 +22,11 @@ const BookRepository_1 = require("./Data/Repositories/BookRepository");
 const BookingRepository_1 = require("./Data/Repositories/BookingRepository");
 exports.bindings = new inversify_1.AsyncContainerModule((bind) => __awaiter(void 0, void 0, void 0, function* () {
     yield connection_1.getDbConnection();
-    bind(constants_1.TYPES.UserService).to(UserService_1.UserService);
-    bind(constants_1.TYPES.UserRepository).to(UserRepository_1.UserRepository);
-    bind(constants_1.TYPES.BookService).to(BookService_1.BookService);
-    bind(constants_1.TYPES.BookRepository).to(BookRepository_1.BookRepository);
-    bind(constants_1.TYPES.BookingService).to(BookingService_1.BookingService);
-    bind(constants_1.TYPES.BookingRepository).to(BookingRepository_1.BookingRepository);
+    bind(Config_1.INVERSIFY_TYPES.UserService).to(UserService_1.UserService);
+    bind(Config_1.INVERSIFY_TYPES.UserRepository).to(UserRepository_1.UserRepository);
+    bind(Config_1.INVERSIFY_TYPES.BookService).to(BookService_1.BookService);
+    bind(Config_1.INVERSIFY_TYPES.BookRepository).to(BookRepository_1.BookRepository);
+    bind(Config_1.INVERSIFY_TYPES.BookingService).to(BookingService_1.BookingService);
+    bind(Config_1.INVERSIFY_TYPES.BookingRepository).to(BookingRepository_1.BookingRepository);
 }));
 //# sourceMappingURL=inversify.config.js.map

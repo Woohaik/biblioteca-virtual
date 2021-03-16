@@ -1,5 +1,5 @@
 import { inject, injectable } from 'inversify';
-import { TYPES } from './../../config/constants';
+import { INVERSIFY_TYPES } from './../../Config';
 import { hashPassword, confirmEmailTemplate, generateUniqueId } from './../utils';
 import { MailService } from "./MailService"
 
@@ -7,7 +7,7 @@ import { MailService } from "./MailService"
 export class UserService implements IUserService, Subject {
 
     private observadores: Observer[];
-    constructor(@inject(TYPES.UserRepository) private userRepository: IUserRepository) { }
+    constructor(@inject(INVERSIFY_TYPES.UserRepository) private userRepository: IUserRepository) { }
 
     async getAllUser(): Promise<IUser[]> {
         return await this.userRepository.getAll()

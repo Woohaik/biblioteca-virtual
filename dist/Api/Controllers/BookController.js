@@ -24,7 +24,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookController = void 0;
 const inversify_express_utils_1 = require("inversify-express-utils");
 const inversify_1 = require("inversify");
-const constants_1 = require("./../../Config/constants");
+const Config_1 = require("./../../Config");
 const ResponseDto_1 = require("./../Dtos/ResponseDto");
 const BookDto_1 = require("./../Dtos/BookDto");
 let BookController = class BookController {
@@ -68,7 +68,7 @@ __decorate([
 ], BookController.prototype, "register", null);
 BookController = __decorate([
     inversify_express_utils_1.controller('/api/book'),
-    __param(0, inversify_1.inject(constants_1.TYPES.BookService)),
+    __param(0, inversify_1.inject(Config_1.INVERSIFY_TYPES.BookService)),
     __metadata("design:paramtypes", [Object])
 ], BookController);
 exports.BookController = BookController;

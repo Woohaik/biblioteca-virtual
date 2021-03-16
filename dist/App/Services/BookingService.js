@@ -22,7 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookingService = void 0;
-const constants_1 = require("../../config/constants");
+const Config_1 = require("./../../Config");
 const inversify_1 = require("inversify");
 const Reservas_1 = require("../../Entities/Reservas");
 let BookingService = class BookingService {
@@ -56,9 +56,9 @@ let BookingService = class BookingService {
 };
 BookingService = __decorate([
     inversify_1.injectable(),
-    __param(0, inversify_1.inject(constants_1.TYPES.BookingRepository)),
-    __param(1, inversify_1.inject(constants_1.TYPES.UserRepository)),
-    __param(2, inversify_1.inject(constants_1.TYPES.BookRepository)),
+    __param(0, inversify_1.inject(Config_1.INVERSIFY_TYPES.BookingRepository)),
+    __param(1, inversify_1.inject(Config_1.INVERSIFY_TYPES.UserRepository)),
+    __param(2, inversify_1.inject(Config_1.INVERSIFY_TYPES.BookRepository)),
     __metadata("design:paramtypes", [Object, Object, Object])
 ], BookingService);
 exports.BookingService = BookingService;

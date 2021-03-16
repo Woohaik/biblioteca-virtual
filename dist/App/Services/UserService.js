@@ -23,7 +23,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const inversify_1 = require("inversify");
-const constants_1 = require("./../../config/constants");
+const Config_1 = require("./../../Config");
 const utils_1 = require("./../utils");
 const MailService_1 = require("./MailService");
 let UserService = class UserService {
@@ -74,7 +74,7 @@ let UserService = class UserService {
 };
 UserService = __decorate([
     inversify_1.injectable(),
-    __param(0, inversify_1.inject(constants_1.TYPES.UserRepository)),
+    __param(0, inversify_1.inject(Config_1.INVERSIFY_TYPES.UserRepository)),
     __metadata("design:paramtypes", [Object])
 ], UserService);
 exports.UserService = UserService;

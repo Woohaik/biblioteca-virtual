@@ -1,6 +1,6 @@
 
 import { AsyncContainerModule } from "inversify";
-import { TYPES } from "./Config/constants";
+import { INVERSIFY_TYPES } from "./Config/";
 
 // Controllers
 import "./Api/Controllers";
@@ -19,14 +19,14 @@ import { BookingRepository } from "./Data/Repositories/BookingRepository";
 export const bindings = new AsyncContainerModule(async (bind) => {
     // Aca conexion a db
     await getDbConnection()
-    bind<UserService>(TYPES.UserService).to(UserService);
-    bind<UserRepository>(TYPES.UserRepository).to(UserRepository);
+    bind<UserService>(INVERSIFY_TYPES.UserService).to(UserService);
+    bind<UserRepository>(INVERSIFY_TYPES.UserRepository).to(UserRepository);
 
     // Books
-    bind<BookService>(TYPES.BookService).to(BookService);
-    bind<BookRepository>(TYPES.BookRepository).to(BookRepository);
+    bind<BookService>(INVERSIFY_TYPES.BookService).to(BookService);
+    bind<BookRepository>(INVERSIFY_TYPES.BookRepository).to(BookRepository);
 
     // Bookings
-    bind<BookingService>(TYPES.BookingService).to(BookingService);
-    bind<BookingRepository>(TYPES.BookingRepository).to(BookingRepository);
-});  
+    bind<BookingService>(INVERSIFY_TYPES.BookingService).to(BookingService);
+    bind<BookingRepository>(INVERSIFY_TYPES.BookingRepository).to(BookingRepository);
+});

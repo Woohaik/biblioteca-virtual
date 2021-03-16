@@ -24,7 +24,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookingController = void 0;
 const inversify_express_utils_1 = require("inversify-express-utils");
 const inversify_1 = require("inversify");
-const constants_1 = require("./../../Config/constants");
+const Config_1 = require("./../../Config");
 const ResponseDto_1 = require("./../Dtos/ResponseDto");
 const BookingDto_1 = require("./../Dtos/BookingDto");
 let BookingController = class BookingController {
@@ -69,7 +69,7 @@ __decorate([
 ], BookingController.prototype, "addBooking", null);
 BookingController = __decorate([
     inversify_express_utils_1.controller('/api/booking'),
-    __param(0, inversify_1.inject(constants_1.TYPES.BookingService)),
+    __param(0, inversify_1.inject(Config_1.INVERSIFY_TYPES.BookingService)),
     __metadata("design:paramtypes", [Object])
 ], BookingController);
 exports.BookingController = BookingController;

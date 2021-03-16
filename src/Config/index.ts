@@ -2,7 +2,7 @@ require("dotenv").config();
 
 import PRODUCTION from "./environments/production";
 import DEVELOPMENT from "./environments/development";
-
+import INVERSIFY_TYPES from "./inversifyTypes";
 const { NODE_ENV } = process.env;
 
 const enviroment: Enviroment = {
@@ -19,5 +19,6 @@ const enviroment: Enviroment = {
 };
 
 export {
-    enviroment as CONFIG
+    enviroment as CONFIG,
+    INVERSIFY_TYPES
 };

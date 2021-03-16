@@ -1,9 +1,9 @@
-import { TYPES } from '../../config/constants';
+import { INVERSIFY_TYPES } from '../../Config';
 import { inject, injectable } from 'inversify';
 
 @injectable()
 export class BookService implements IBookService {
-    constructor(@inject(TYPES.BookRepository) private bookRepository: IBookRepository) { }
+    constructor(@inject(INVERSIFY_TYPES.BookRepository) private bookRepository: IBookRepository) { }
 
     async getAllBooks(): Promise<IBook[]> {
         return await this.bookRepository.getAll()
