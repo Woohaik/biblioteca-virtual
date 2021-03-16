@@ -1,6 +1,8 @@
 import {
     controller,
     httpGet,
+    httpPost,
+    requestBody,
     response
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
@@ -22,6 +24,18 @@ export class BookingController {
         });
         return new ResponseDto([], {
             bookings: mappedBookings
+        })
+    }
+
+    @httpPost("/")
+    public async addBooking(
+        @response() _: Response,
+        @requestBody() newBooking: IBooking
+    ): Promise<ResponseDto> {
+        console.log(newBooking);
+        await this.bookingService.addBooking(1, 1);
+        return new ResponseDto([], {
+            message: "Reserva Agregada"
         })
     }
 }

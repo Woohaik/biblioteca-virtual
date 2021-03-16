@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Booking = void 0;
 var typeorm_1 = require("typeorm");
+var Libro_1 = require("./Libro");
+var Usuario_1 = require("./Usuario");
 var Booking = (function () {
     function Booking() {
     }
@@ -19,13 +21,13 @@ var Booking = (function () {
         __metadata("design:type", Number)
     ], Booking.prototype, "ID", void 0);
     __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", Number)
-    ], Booking.prototype, "UserId", void 0);
+        typeorm_1.ManyToOne(function () { return Libro_1.Libro; }, function (libro) { return libro.ID; }),
+        __metadata("design:type", Libro_1.Libro)
+    ], Booking.prototype, "Book", void 0);
     __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", Number)
-    ], Booking.prototype, "BookId", void 0);
+        typeorm_1.ManyToOne(function () { return Usuario_1.Usuario; }, function (usuario) { return usuario.ID; }),
+        __metadata("design:type", Usuario_1.Usuario)
+    ], Booking.prototype, "User", void 0);
     __decorate([
         typeorm_1.Column(),
         __metadata("design:type", Date)

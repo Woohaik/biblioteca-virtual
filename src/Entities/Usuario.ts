@@ -3,9 +3,8 @@ import {
     PrimaryGeneratedColumn,
     Column,
     CreateDateColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
 } from "typeorm";
-
 
 @Entity()
 export class Usuario implements IUser {
@@ -38,4 +37,5 @@ export class Usuario implements IUser {
 
     @UpdateDateColumn()
     public UpdatedAt: Date;
+
 }

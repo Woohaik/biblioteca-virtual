@@ -3,9 +3,8 @@ import {
     PrimaryGeneratedColumn,
     Column,
     CreateDateColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
 } from "typeorm";
-
 
 @Entity()
 export class Libro implements IBook {
@@ -41,4 +40,5 @@ export class Libro implements IBook {
 
     @UpdateDateColumn()
     public UpdatedAt: Date;
+
 }

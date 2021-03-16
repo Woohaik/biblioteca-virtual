@@ -1,13 +1,15 @@
 import {
     controller,
     httpGet,
+    httpPost,
+    requestBody,
     response
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { Response } from 'express';
 import { TYPES } from "../../Config/constants"
 import { ResponseDto } from "./../Dtos/ResponseDto"
-import { BookDto } from '../Dtos/BookDto'; 
+import { BookDto } from '../Dtos/BookDto';
 
 @controller('/api/book')
 export class BookController {
@@ -22,6 +24,17 @@ export class BookController {
         });
         return new ResponseDto([], {
             books: mappedBooks
+        })
+    }
+
+    @httpPost("/")
+    public async register(
+        @response() _: Response,
+        @requestBody() newBook: IBook
+    ): Promise<ResponseDto> {
+        await this.bookService.addBook(newBook);
+        return new ResponseDto([], {
+            message: "Libro Agregado"
         })
     }
 }

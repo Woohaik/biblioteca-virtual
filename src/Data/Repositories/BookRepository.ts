@@ -9,11 +9,10 @@ export class BookRepository implements IBookRepository {
         const conn = getConnection();
         this.bookConnection = conn.getRepository(Libro);
     }
+    
     edit(id: number, entity: IBook): Promise<void> {
         console.log(id);
         console.log(entity);
-
-
         throw new Error("Method not implemented.");
     }
     delete(id: number): Promise<void> {
@@ -31,6 +30,7 @@ export class BookRepository implements IBookRepository {
             Author: entity.Author,
             Genre: entity.Genre,
             Rate: entity.Rate,
+            PublicationYear: entity.PublicationYear,
             ISBN: entity.ISBN,
             Editorial: entity.Editorial,
             Synopsis: entity.Synopsis

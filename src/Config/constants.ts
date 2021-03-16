@@ -1,4 +1,4 @@
-export const TYPES = {
+const TYPES = {
     UserService: Symbol.for('UserService'),
     UserRepository: Symbol.for('UserRepository'),
 
@@ -10,3 +10,6 @@ export const TYPES = {
     BookingService: Symbol.for('BookingService'),
     BookingRepository: Symbol.for('BookingRepository')
 };
+
+
+export { TYPES }
