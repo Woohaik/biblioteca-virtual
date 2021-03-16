@@ -9,10 +9,10 @@ import {
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { Response } from 'express';
-import { TYPES } from "../../Config/constants"
+import { TYPES } from "./../../Config/constants"
 import { ResponseDto } from "./../Dtos/ResponseDto"
-import { validateUser } from "../utils"
-import { UserDto } from '../Dtos/UserDto';
+import { validateUser } from "./../utils"
+import { UserDto } from './../Dtos/UserDto';
 
 @controller('/api/user')
 export class UserController implements interfaces.Controller {
@@ -31,7 +31,9 @@ export class UserController implements interfaces.Controller {
 
     @httpGet("/confirm-email/:id")
     public async confirmEmail(@requestParam("id") id: string): Promise<string> {
-        await this.userService.confirmEmail(id)
+
+
+        await this.userService.confirmEmail(id);
         return "Email Confirmado"
     }
 

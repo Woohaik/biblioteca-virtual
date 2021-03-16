@@ -9,7 +9,7 @@ exports.default = {
         host: process.env.DEVELOP_HOST,
         dialect: "postgres",
     },
-    HOST: "http://localhost:" + (process.env.PORT || 4000),
+    HOST: `http://localhost:${process.env.PORT || 4000}`,
     PORT: process.env.PORT || 4000
 };
 //# sourceMappingURL=development.js.map

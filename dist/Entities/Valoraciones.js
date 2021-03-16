@@ -10,38 +10,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Valoraciones = void 0;
-var typeorm_1 = require("typeorm");
-var Valoraciones = (function () {
-    function Valoraciones() {
-    }
-    __decorate([
-        typeorm_1.PrimaryGeneratedColumn(),
-        __metadata("design:type", Number)
-    ], Valoraciones.prototype, "ID", void 0);
-    __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", Number)
-    ], Valoraciones.prototype, "UserId", void 0);
-    __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", Number)
-    ], Valoraciones.prototype, "BookId", void 0);
-    __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", Number)
-    ], Valoraciones.prototype, "Rate", void 0);
-    __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", String)
-    ], Valoraciones.prototype, "Commentary", void 0);
-    __decorate([
-        typeorm_1.CreateDateColumn(),
-        __metadata("design:type", Date)
-    ], Valoraciones.prototype, "CreatedAt", void 0);
-    Valoraciones = __decorate([
-        typeorm_1.Entity()
-    ], Valoraciones);
-    return Valoraciones;
-}());
+const typeorm_1 = require("typeorm");
+let Valoraciones = class Valoraciones {
+};
+__decorate([
+    typeorm_1.PrimaryGeneratedColumn(),
+    __metadata("design:type", Number)
+], Valoraciones.prototype, "ID", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Valoraciones.prototype, "UserId", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Valoraciones.prototype, "BookId", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], Valoraciones.prototype, "Rate", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Valoraciones.prototype, "Commentary", void 0);
+__decorate([
+    typeorm_1.CreateDateColumn(),
+    __metadata("design:type", Date)
+], Valoraciones.prototype, "CreatedAt", void 0);
+Valoraciones = __decorate([
+    typeorm_1.Entity()
+], Valoraciones);
 exports.Valoraciones = Valoraciones;
 //# sourceMappingURL=Valoraciones.js.map

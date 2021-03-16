@@ -129,3 +129,16 @@ interface IBookingRepository extends IRepository<IBooking> { }
 
 
 
+////////////////////////////////////////////////////////////////
+
+
+interface Observer {
+    update(): void;
+}
+
+
+interface Subject {
+    registerObserver(observer: Observer): void;
+    removeObserver(observer: Observer): void;
+    notifyObserver(): void;
+}

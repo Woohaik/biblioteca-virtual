@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserDto = void 0;
-var UserDto = (function () {
-    function UserDto(user) {
+class UserDto {
+    constructor(user) {
         this.ID = user.ID;
         this.Name = user.Name;
         this.LastName = user.LastName;
@@ -12,7 +12,6 @@ var UserDto = (function () {
         this.UpdatedAt = user.UpdatedAt;
         this.ConfirmedEmail = user.ConfirmedEmail;
     }
-    return UserDto;
-}());
+}
 exports.UserDto = UserDto;
 //# sourceMappingURL=UserDto.js.map

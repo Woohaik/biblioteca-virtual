@@ -10,44 +10,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Booking = void 0;
-var typeorm_1 = require("typeorm");
-var Libro_1 = require("./Libro");
-var Usuario_1 = require("./Usuario");
-var Booking = (function () {
-    function Booking() {
-    }
-    __decorate([
-        typeorm_1.PrimaryGeneratedColumn(),
-        __metadata("design:type", Number)
-    ], Booking.prototype, "ID", void 0);
-    __decorate([
-        typeorm_1.ManyToOne(function () { return Libro_1.Libro; }, function (libro) { return libro.ID; }),
-        __metadata("design:type", Libro_1.Libro)
-    ], Booking.prototype, "Book", void 0);
-    __decorate([
-        typeorm_1.ManyToOne(function () { return Usuario_1.Usuario; }, function (usuario) { return usuario.ID; }),
-        __metadata("design:type", Usuario_1.Usuario)
-    ], Booking.prototype, "User", void 0);
-    __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", Date)
-    ], Booking.prototype, "StartDate", void 0);
-    __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", Date)
-    ], Booking.prototype, "EndDate", void 0);
-    __decorate([
-        typeorm_1.CreateDateColumn(),
-        __metadata("design:type", Date)
-    ], Booking.prototype, "CreatedAt", void 0);
-    __decorate([
-        typeorm_1.UpdateDateColumn(),
-        __metadata("design:type", Date)
-    ], Booking.prototype, "UpdatedAt", void 0);
-    Booking = __decorate([
-        typeorm_1.Entity()
-    ], Booking);
-    return Booking;
-}());
+const typeorm_1 = require("typeorm");
+const Libro_1 = require("./Libro");
+const Usuario_1 = require("./Usuario");
+let Booking = class Booking {
+};
+__decorate([
+    typeorm_1.PrimaryGeneratedColumn(),
+    __metadata("design:type", Number)
+], Booking.prototype, "ID", void 0);
+__decorate([
+    typeorm_1.ManyToOne(() => Libro_1.Libro, (libro) => libro.ID),
+    __metadata("design:type", Libro_1.Libro)
+], Booking.prototype, "Book", void 0);
+__decorate([
+    typeorm_1.ManyToOne(() => Usuario_1.Usuario, (usuario) => usuario.ID),
+    __metadata("design:type", Usuario_1.Usuario)
+], Booking.prototype, "User", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Date)
+], Booking.prototype, "StartDate", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Date)
+], Booking.prototype, "EndDate", void 0);
+__decorate([
+    typeorm_1.CreateDateColumn(),
+    __metadata("design:type", Date)
+], Booking.prototype, "CreatedAt", void 0);
+__decorate([
+    typeorm_1.UpdateDateColumn(),
+    __metadata("design:type", Date)
+], Booking.prototype, "UpdatedAt", void 0);
+Booking = __decorate([
+    typeorm_1.Entity()
+], Booking);
 exports.Booking = Booking;
 //# sourceMappingURL=Reservas.js.map

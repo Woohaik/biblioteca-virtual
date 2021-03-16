@@ -6,8 +6,8 @@ export class BookingDto implements IBookingDto {
     EndDate: Date;
     constructor(booking: IBooking) {
         this.ID = booking.ID;
-        this.UserId = booking.UserId;
-        this.BookId = booking.UserId;
+        this.UserId = 15;
+        this.BookId = 15;
         this.StartDate = booking.StartDate;
         this.EndDate = booking.EndDate;
     }

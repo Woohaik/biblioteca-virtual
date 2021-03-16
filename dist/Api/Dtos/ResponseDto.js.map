@@ -1,1 +1,1 @@
-{"version":3,"file":"ResponseDto.js","sourceRoot":"","sources":["../../../src/Api/Dtos/ResponseDto.ts"],"names":[],"mappings":";;;AAEA;IAEI,qBAAmB,MAAkB,EAAS,IAAgB;QAA3C,WAAM,GAAN,MAAM,CAAY;QAAS,SAAI,GAAJ,IAAI,CAAY;IAAI,CAAC;IAEvE,kBAAC;AAAD,CAAC,AAJD,IAIC;AAJY,kCAAW"}
+{"version":3,"file":"ResponseDto.js","sourceRoot":"","sources":["../../../src/Api/Dtos/ResponseDto.ts"],"names":[],"mappings":";;;AAEA,MAAa,WAAW;IAEpB,YAAmB,MAAkB,EAAS,IAAgB;QAA3C,WAAM,GAAN,MAAM,CAAY;QAAS,SAAI,GAAJ,IAAI,CAAY;IAAI,CAAC;CAEtE;AAJD,kCAIC"}

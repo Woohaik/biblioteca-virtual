@@ -7,9 +7,9 @@ import {
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { Response } from 'express';
-import { TYPES } from "../../Config/constants"
+import { TYPES } from "./../../Config/constants"
 import { ResponseDto } from "./../Dtos/ResponseDto"
-import { BookingDto } from '../Dtos/BookingDto';
+import { BookingDto } from './../Dtos/BookingDto';
 
 @controller('/api/booking')
 export class BookingController {
