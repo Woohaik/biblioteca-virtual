@@ -31,8 +31,6 @@ export class UserController implements interfaces.Controller {
 
     @httpGet("/confirm-email/:id")
     public async confirmEmail(@requestParam("id") id: string): Promise<string> {
-
-
         await this.userService.confirmEmail(id);
         return "Email Confirmado"
     }
