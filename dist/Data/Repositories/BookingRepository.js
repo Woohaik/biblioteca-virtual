@@ -53,6 +53,7 @@ let BookingRepository = class BookingRepository {
     }
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log(yield this.bookingConnection.find());
             return yield this.bookingConnection.find();
         });
     }

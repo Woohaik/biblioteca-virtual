@@ -45,7 +45,7 @@ let BookingController = class BookingController {
     addBooking(_, newBooking) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(newBooking);
-            yield this.bookingService.addBooking(1, 1);
+            yield this.bookingService.addBooking(newBooking.userID, newBooking.bookId);
             return new ResponseDto_1.ResponseDto([], {
                 message: "Reserva Agregada"
             });

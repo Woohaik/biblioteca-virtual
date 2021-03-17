@@ -1,0 +1,1 @@
+{"version":3,"file":"UserConfirmedToAdminTemplate.js","sourceRoot":"","sources":["../../../../src/App/utils/email/UserConfirmedToAdminTemplate.ts"],"names":[],"mappings":";;;AAAO,MAAM,4BAA4B,GAAG,CAAC,MAAc,EAAiB,EAAE,CAAC,CAAC;IAC5E,OAAO,EAAE,uCAAuC;IAChD,IAAI,EAAE,+CAA+C,MAAM,EAAE;CAChE,CAAC,CAAA;AAHW,QAAA,4BAA4B,gCAGvC"}

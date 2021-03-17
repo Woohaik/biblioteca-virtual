@@ -26,9 +26,13 @@ const inversify_1 = require("inversify");
 const Config_1 = require("./../../Config");
 const utils_1 = require("./../utils");
 const MailService_1 = require("./MailService");
+const UserObservator_1 = require("./../../Entities/UserObservator");
 let UserService = class UserService {
     constructor(userRepository) {
         this.userRepository = userRepository;
+        this.observadores = [];
+        this.registerObserver(new UserObservator_1.UserObservator("martha.marquez@alumnos.uneatlantico.es", "marta", "gestor"));
+        this.registerObserver(new UserObservator_1.UserObservator("wilfredo.hernandez@alumnos.uneatlantico.es", "marta", "gestor"));
     }
     getAllUser() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -47,8 +51,8 @@ let UserService = class UserService {
             if (toConfirmEmail) {
                 let user = yield this.userRepository.getByEmail(toConfirmEmail);
                 if (user) {
-                    console.log("wardame");
                     yield this.userRepository.confirmEmail(user.ID, emailId);
+                    this.notifyObserver(utils_1.userConfirmedToAdminTemplate(`${user.Name} ${user.LastName}`));
                 }
             }
         });
@@ -59,7 +63,7 @@ let UserService = class UserService {
             yield this.userRepository.save(newUser);
             let confirmEmailId = utils_1.generateUniqueId();
             yield this.userRepository.saveEmailValidate(confirmEmailId, newUser.Email);
-            yield new MailService_1.MailService().sendEmail(newUser.Email, utils_1.confirmEmailTemplate(confirmEmailId));
+            yield MailService_1.MailService.sendEmail(newUser.Email, utils_1.confirmEmailTemplate(confirmEmailId));
         });
     }
     registerObserver(observer) {
@@ -68,8 +72,8 @@ let UserService = class UserService {
     removeObserver(observer) {
         this.observadores.splice(this.observadores.findIndex(ob => ob === observer), 1);
     }
-    notifyObserver() {
-        this.observadores.forEach(observers => observers.update());
+    notifyObserver(template) {
+        this.observadores.forEach(observers => observers.update(template));
     }
 };
 UserService = __decorate([

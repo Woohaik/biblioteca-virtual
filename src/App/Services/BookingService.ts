@@ -41,6 +41,8 @@ export class BookingService implements IBookingService {
     }
 
     async getAllBookings(): Promise<IBooking[]> {
+
+
         return await this.bookingRepository.getAll()
     }
 }
