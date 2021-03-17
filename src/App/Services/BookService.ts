@@ -9,7 +9,6 @@ export class BookService implements IBookService {
         return await this.bookRepository.getAll()
     }
 
-
     async addBook(newBook: IBook): Promise<void> {
         await this.bookRepository.save(newBook);
 

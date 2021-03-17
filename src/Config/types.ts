@@ -77,6 +77,11 @@ interface IBookService {
     addBook(param: IBook): Promise<void>
 }
 
+interface IApiBooking {
+    userID: number;
+    bookId: number;
+}
+
 interface IBooking {
     ID?: number;
     User: IUser;
@@ -87,8 +92,8 @@ interface IBooking {
 
 interface IBookingDto {
     ID?: number;
-    UserId: number;
-    BookId: number;
+    User: IUserDto;
+    Book: IBookDto;
     StartDate: Date;
     EndDate: Date;
 }
@@ -133,12 +138,17 @@ interface IBookingRepository extends IRepository<IBooking> { }
 
 
 interface Observer {
-    update(): void;
+    update(template: EmailTemplate): void;
 }
 
 
 interface Subject {
     registerObserver(observer: Observer): void;
     removeObserver(observer: Observer): void;
-    notifyObserver(): void;
+    notifyObserver(template: EmailTemplate): void;
+}
+
+type EmailTemplate = {
+    subject: string;
+    html: string;
 }

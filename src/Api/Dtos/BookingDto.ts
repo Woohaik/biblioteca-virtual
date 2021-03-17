@@ -1,14 +1,19 @@
+import { BookDto } from "./BookDto";
+import { UserDto } from "./UserDto";
+
 export class BookingDto implements IBookingDto {
     ID?: number;
-    UserId: number;
-    BookId: number;
+    User: IUserDto;
+    Book: IBookDto;
     StartDate: Date;
     EndDate: Date;
     constructor(booking: IBooking) {
+        console.log(booking);
         this.ID = booking.ID;
-        this.UserId = 15;
-        this.BookId = 15;
+        this.User = new UserDto(booking.User);
+        this.Book = new BookDto(booking.Book);
         this.StartDate = booking.StartDate;
         this.EndDate = booking.EndDate;
     }
+
 }

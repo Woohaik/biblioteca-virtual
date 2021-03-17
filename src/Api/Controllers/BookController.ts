@@ -14,6 +14,8 @@ import { BookDto } from './../Dtos/BookDto';
 @controller('/api/book')
 export class BookController {
     constructor(@inject(INVERSIFY_TYPES.BookService) private bookService: IBookService) { }
+
+
     @httpGet("/")
     public async getBooks(
         @response() _: Response
@@ -26,6 +28,7 @@ export class BookController {
             books: mappedBooks
         })
     }
+
 
     @httpPost("/")
     public async register(

@@ -33,6 +33,11 @@ export class BookingRepository implements IBookingRepository {
     }
 
     async getAll(): Promise<IBooking[]> {
-        return await this.bookingConnection.find()
+
+
+        console.log(await this.bookingConnection.find());
+
+        return await this.bookingConnection.find();
     }
 }
+ 

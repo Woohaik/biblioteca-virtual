@@ -30,10 +30,10 @@ export class BookingController {
     @httpPost("/")
     public async addBooking(
         @response() _: Response,
-        @requestBody() newBooking: IBooking
+        @requestBody() newBooking: IApiBooking
     ): Promise<ResponseDto> {
         console.log(newBooking);
-        await this.bookingService.addBooking(1, 1);
+        await this.bookingService.addBooking(newBooking.userID, newBooking.bookId);
         return new ResponseDto([], {
             message: "Reserva Agregada"
         })

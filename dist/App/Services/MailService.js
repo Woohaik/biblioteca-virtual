@@ -16,10 +16,7 @@ exports.MailService = void 0;
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const Config_1 = require("./../../Config");
 class MailService {
-    update() {
-        console.log("Envio Correo");
-    }
-    sendEmail(to, bodyFunction) {
+    static sendEmail(to, bodyFunction) {
         return __awaiter(this, void 0, void 0, function* () {
             const transporter = nodemailer_1.default.createTransport({
                 service: 'gmail',

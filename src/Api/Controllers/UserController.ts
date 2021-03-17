@@ -7,6 +7,7 @@ import {
     requestBody,
     requestParam
 } from 'inversify-express-utils';
+
 import { inject } from 'inversify';
 import { Response } from 'express';
 import { INVERSIFY_TYPES } from "../../Config"
@@ -34,6 +35,7 @@ export class UserController implements interfaces.Controller {
         await this.userService.confirmEmail(id);
         return "Email Confirmado"
     }
+
 
     @httpPost("/")
     public async register(
