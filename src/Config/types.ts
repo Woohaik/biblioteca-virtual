@@ -152,3 +152,26 @@ type EmailTemplate = {
     subject: string;
     html: string;
 }
+
+
+
+interface IReservaProducto {
+    presentacion: IPresentacion;
+    formato: IFormato;
+    usuario: IUser;
+    libro: IBook;
+}
+
+interface IBuilder {
+    construyeFormato(): void;
+    construyePresentacion(): void;
+    obtenerReserva(): IReservaProducto;
+
+}
+
+interface IPresentacion {
+    presentacion(): string;
+}
+interface IFormato {
+    formato(): string;
+}
