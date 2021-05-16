@@ -34,6 +34,12 @@ export class Booking implements IBooking {
     public User: Usuario;
 
     @Column()
+    public Format: string; 
+
+    @Column()
+    public Presentation: string; 
+
+    @Column()
     public StartDate: Date;
 
     @Column()
@@ -41,6 +47,10 @@ export class Booking implements IBooking {
 
     @CreateDateColumn()
     public CreatedAt: Date;
+
+
+
+
 
     @UpdateDateColumn()
     public UpdatedAt: Date; 

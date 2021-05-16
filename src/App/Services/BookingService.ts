@@ -1,6 +1,10 @@
+
 import { INVERSIFY_TYPES } from './../../Config';
 import { inject, injectable } from 'inversify';
-import { Booking } from '../../Entities/Reservas';
+import { Director } from './../../Entities/builder/Director';
+import { BuilderFisico } from './../../Entities/builder/BuilderFisico';
+import { BuilderDigitalTexto } from './../../Entities/builder/BuilderDigitalTexto';
+import { BuilderDigitalVoz } from './../../Entities/builder/BuilderDigitalVoz';
 
 @injectable()
 export class BookingService implements IBookingService {
@@ -9,40 +13,35 @@ export class BookingService implements IBookingService {
         @inject(INVERSIFY_TYPES.BookRepository) private bookRepository: IBookRepository
     ) { }
 
-
-    async addBooking(userId: number, bookId: number): Promise<void> {
+    async addBooking(userId: number, bookId: number, isFisico: Boolean, isText: Boolean): Promise<void> {
         const user: IUser | undefined = await this.userRepository.getById(userId);
         const book: IBook | undefined = await this.bookRepository.getById(bookId);
-        const booking: IBooking = new Booking();
-
-        if (user) {
-            console.log(user);
-
-            booking.User = user;
+        if (user && book) {
+            let reservaAGuardar: IReservaProducto;
+            const director = new Director();
+            if (isFisico) {
+                const builderFisico = new BuilderFisico()
+                director.Construye(builderFisico);
+                reservaAGuardar = builderFisico.obtenerReserva();
+            } else {
+                if (isText) {
+                    const builderDigitalTexto = new BuilderDigitalTexto();
+                    director.Construye(builderDigitalTexto);
+                    reservaAGuardar = builderDigitalTexto.obtenerReserva();
+                } else {
+                    const builderDigitalVoz = new BuilderDigitalVoz();
+                    director.Construye(builderDigitalVoz);
+                    reservaAGuardar = builderDigitalVoz.obtenerReserva();
+                }
+            }
+            reservaAGuardar.libro = book;
+            reservaAGuardar.usuario = user;
+            this.bookingRepository.saveBooking(reservaAGuardar);
         }
-
-        if (book) {
-            booking.Book = book;
-            booking.StartDate = new Date();
-            booking.EndDate = new Date();
-        }
-        // Bsca el usuario para
-        // 
-
-
-        //////////// Adding booking
-
-
-        this.bookingRepository.save(booking);
-
-
-
-
     }
 
+
     async getAllBookings(): Promise<IBooking[]> {
-
-
         return await this.bookingRepository.getAll()
     }
 }

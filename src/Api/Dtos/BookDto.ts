@@ -1,5 +1,6 @@
 export class BookDto implements IBookDto {
     Name: string;
+    ID: number | undefined;
     Author: string;
     PublicationYear: number;
     Genre: string;
@@ -8,6 +9,7 @@ export class BookDto implements IBookDto {
     Editorial: string;
     Synopsis: string;
     constructor(book : IBook){
+        this.ID = book.ID;
         this.Name = book.Name;
         this.Author = book.Author;
         this.PublicationYear = book.PublicationYear;

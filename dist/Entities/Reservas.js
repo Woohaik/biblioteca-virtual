@@ -39,6 +39,14 @@ __decorate([
 ], Booking.prototype, "User", void 0);
 __decorate([
     typeorm_1.Column(),
+    __metadata("design:type", String)
+], Booking.prototype, "Format", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Booking.prototype, "Presentation", void 0);
+__decorate([
+    typeorm_1.Column(),
     __metadata("design:type", Date)
 ], Booking.prototype, "StartDate", void 0);
 __decorate([

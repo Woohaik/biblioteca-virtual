@@ -28,9 +28,18 @@ const Config_1 = require("../../Config");
 const ResponseDto_1 = require("./../Dtos/ResponseDto");
 const utils_1 = require("./../utils");
 const UserDto_1 = require("./../Dtos/UserDto");
+const ErrorDto_1 = require("../Dtos/ErrorDto");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
+    }
+    deleteUser(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.userService.deleteUser(id);
+            return new ResponseDto_1.ResponseDto([], {
+                message: "Usuario Eliminado"
+            });
+        });
     }
     getAllUsers() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -49,16 +58,28 @@ let UserController = class UserController {
     }
     register(_, newUser) {
         return __awaiter(this, void 0, void 0, function* () {
-            let isValid = yield utils_1.validateUser(newUser);
-            if (isValid.failed)
-                return new ResponseDto_1.ResponseDto(isValid.errors, {});
-            yield this.userService.registerUser(newUser);
-            return new ResponseDto_1.ResponseDto([], {
-                message: "Usuario Registrado"
-            });
+            try {
+                let isValid = yield utils_1.validateUser(newUser);
+                if (isValid.failed)
+                    return new ResponseDto_1.ResponseDto(isValid.errors, {});
+                yield this.userService.registerUser(newUser);
+                return new ResponseDto_1.ResponseDto([], {
+                    message: "Usuario Registrado"
+                });
+            }
+            catch (error) {
+                return new ResponseDto_1.ResponseDto([new ErrorDto_1.ErrorDto("Modal", error.message)], {});
+            }
         });
     }
 };
+__decorate([
+    inversify_express_utils_1.httpDelete("/:id"),
+    __param(0, inversify_express_utils_1.requestParam("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "deleteUser", null);
 __decorate([
     inversify_express_utils_1.httpGet("/"),
     __metadata("design:type", Function),

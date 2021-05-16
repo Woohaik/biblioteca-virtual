@@ -24,28 +24,44 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookingService = void 0;
 const Config_1 = require("./../../Config");
 const inversify_1 = require("inversify");
-const Reservas_1 = require("../../Entities/Reservas");
+const Director_1 = require("./../../Entities/builder/Director");
+const BuilderFisico_1 = require("./../../Entities/builder/BuilderFisico");
+const BuilderDigitalTexto_1 = require("./../../Entities/builder/BuilderDigitalTexto");
+const BuilderDigitalVoz_1 = require("./../../Entities/builder/BuilderDigitalVoz");
 let BookingService = class BookingService {
     constructor(bookingRepository, userRepository, bookRepository) {
         this.bookingRepository = bookingRepository;
         this.userRepository = userRepository;
         this.bookRepository = bookRepository;
     }
-    addBooking(userId, bookId) {
+    addBooking(userId, bookId, isFisico, isText) {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield this.userRepository.getById(userId);
             const book = yield this.bookRepository.getById(bookId);
-            const booking = new Reservas_1.Booking();
-            if (user) {
-                console.log(user);
-                booking.User = user;
+            if (user && book) {
+                let reservaAGuardar;
+                const director = new Director_1.Director();
+                if (isFisico) {
+                    const builderFisico = new BuilderFisico_1.BuilderFisico();
+                    director.Construye(builderFisico);
+                    reservaAGuardar = builderFisico.obtenerReserva();
+                }
+                else {
+                    if (isText) {
+                        const builderDigitalTexto = new BuilderDigitalTexto_1.BuilderDigitalTexto();
+                        director.Construye(builderDigitalTexto);
+                        reservaAGuardar = builderDigitalTexto.obtenerReserva();
+                    }
+                    else {
+                        const builderDigitalVoz = new BuilderDigitalVoz_1.BuilderDigitalVoz();
+                        director.Construye(builderDigitalVoz);
+                        reservaAGuardar = builderDigitalVoz.obtenerReserva();
+                    }
+                }
+                reservaAGuardar.libro = book;
+                reservaAGuardar.usuario = user;
+                this.bookingRepository.saveBooking(reservaAGuardar);
             }
-            if (book) {
-                booking.Book = book;
-                booking.StartDate = new Date();
-                booking.EndDate = new Date();
-            }
-            this.bookingRepository.save(booking);
         });
     }
     getAllBookings() {

@@ -1,18 +1,13 @@
-export class ReservaProducto implements IReservaProducto {
-    presentacion: IPresentacion;
-    formato: IFormato;
-    usuario: IUser;
-    libro: IBook;
-    StartDate: Date;
-    EndDate: Date;
-
-    ponerPresentacion(presentacion: IPresentacion) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ReservaProducto = void 0;
+class ReservaProducto {
+    ponerPresentacion(presentacion) {
         this.presentacion = presentacion;
     }
-    decidirFormato(formato: IFormato) {
+    decidirFormato(formato) {
         this.formato = formato;
     }
-
     mostrarReserva() {
         console.log("Usuario que la realiza", this.usuario);
         console.log("Libro que reserva", this.libro);
@@ -22,3 +17,5 @@ export class ReservaProducto implements IReservaProducto {
         }
     }
 }
+exports.ReservaProducto = ReservaProducto;
+//# sourceMappingURL=ReservadBuilder.js.map

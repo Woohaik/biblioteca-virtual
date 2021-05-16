@@ -27,7 +27,7 @@ export class UserRepository implements IUserRepository {
 
     }
     async delete(id: number): Promise<void> {
-        console.log(id);
+        await this.userConnection.delete(id);
     }
 
     async getById(id: number): Promise<IUser | undefined> {
