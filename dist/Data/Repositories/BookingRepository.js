@@ -27,6 +27,18 @@ let BookingRepository = class BookingRepository {
         const conn = typeorm_1.getConnection();
         this.bookingConnection = conn.getRepository(Reservas_1.Booking);
     }
+    saveBooking(entity) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.bookingConnection.insert({
+                UserId: entity.usuario.ID,
+                BookId: entity.libro.ID,
+                Format: entity.formato.formato(),
+                Presentation: entity.presentacion.presentacion(),
+                StartDate: entity.StartDate,
+                EndDate: entity.EndDate,
+            });
+        });
+    }
     edit(id, entity) {
         console.log(id);
         console.log(entity);
@@ -43,18 +55,13 @@ let BookingRepository = class BookingRepository {
     }
     save(entity) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.bookingConnection.insert({
-                User: entity.User,
-                Book: entity.Book,
-                StartDate: entity.StartDate,
-                EndDate: entity.EndDate,
-            });
+            console.log(entity);
+            throw new Error("Method not implemented.");
         });
     }
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(yield this.bookingConnection.find());
-            return yield this.bookingConnection.find();
+            return yield this.bookingConnection.find({ relations: ["User", "Book"] });
         });
     }
 };

@@ -27,6 +27,8 @@ const inversify_1 = require("inversify");
 const Config_1 = require("./../../Config");
 const ResponseDto_1 = require("./../Dtos/ResponseDto");
 const BookingDto_1 = require("./../Dtos/BookingDto");
+const ErrorDto_1 = require("../Dtos/ErrorDto");
+const utils_1 = require("../utils");
 let BookingController = class BookingController {
     constructor(bookingService) {
         this.bookingService = bookingService;
@@ -44,11 +46,19 @@ let BookingController = class BookingController {
     }
     addBooking(_, newBooking) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(newBooking);
-            yield this.bookingService.addBooking(newBooking.userID, newBooking.bookId);
-            return new ResponseDto_1.ResponseDto([], {
-                message: "Reserva Agregada"
-            });
+            try {
+                console.log(newBooking);
+                let isValid = yield utils_1.validateBooking(newBooking);
+                if (isValid.failed)
+                    return new ResponseDto_1.ResponseDto(isValid.errors, {});
+                yield this.bookingService.addBooking(newBooking.userID, newBooking.bookId, false, false);
+                return new ResponseDto_1.ResponseDto([], {
+                    message: "Reserva Agregada"
+                });
+            }
+            catch (error) {
+                return new ResponseDto_1.ResponseDto([new ErrorDto_1.ErrorDto("MODAL", error.message)], {});
+            }
         });
     }
 };

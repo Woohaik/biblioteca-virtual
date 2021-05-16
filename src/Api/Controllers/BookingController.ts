@@ -10,6 +10,8 @@ import { Response } from 'express';
 import { INVERSIFY_TYPES } from "./../../Config";
 import { ResponseDto } from "./../Dtos/ResponseDto"
 import { BookingDto } from './../Dtos/BookingDto';
+import { ErrorDto } from '../Dtos/ErrorDto';
+import { validateBooking } from '../utils';
 
 @controller('/api/booking')
 export class BookingController {
@@ -32,10 +34,20 @@ export class BookingController {
         @response() _: Response,
         @requestBody() newBooking: IApiBooking
     ): Promise<ResponseDto> {
-        console.log(newBooking);
-        await this.bookingService.addBooking(newBooking.userID, newBooking.bookId);
-        return new ResponseDto([], {
-            message: "Reserva Agregada"
-        })
+        try {
+            console.log(newBooking);
+
+            let isValid = await validateBooking(newBooking);
+            if (isValid.failed) return new ResponseDto(isValid.errors, {})
+
+
+            await this.bookingService.addBooking(newBooking.userID, newBooking.bookId, false, false);
+            return new ResponseDto([], {
+                message: "Reserva Agregada"
+            })
+        } catch (error) {
+            return new ResponseDto([new ErrorDto("MODAL", error.message)], {
+            })
+        }
     }
 }

@@ -9,6 +9,21 @@ export class BookingRepository implements IBookingRepository {
         const conn = getConnection();
         this.bookingConnection = conn.getRepository(Booking);
     }
+
+
+    async saveBooking(entity: IReservaProducto): Promise<void> {
+        await this.bookingConnection.insert({
+            UserId: entity.usuario.ID,
+            BookId: entity.libro.ID,
+            Format: entity.formato.formato(),
+            Presentation: entity.presentacion.presentacion(),
+            StartDate: entity.StartDate,
+            EndDate: entity.EndDate,
+        });
+    }
+
+
+
     edit(id: number, entity: IBooking): Promise<void> {
         console.log(id);
         console.log(entity);
@@ -24,20 +39,15 @@ export class BookingRepository implements IBookingRepository {
     }
 
     async save(entity: IBooking): Promise<void> {
-        await this.bookingConnection.insert({
-            User: entity.User,
-            Book: entity.Book,
-            StartDate: entity.StartDate,
-            EndDate: entity.EndDate,
-        });
+        console.log(entity);
+        throw new Error("Method not implemented.");
     }
 
     async getAll(): Promise<IBooking[]> {
 
 
-        console.log(await this.bookingConnection.find());
 
-        return await this.bookingConnection.find();
+
+        return await this.bookingConnection.find({relations: ["User" , "Book"]});
     }
 }
- 

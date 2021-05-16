@@ -31,8 +31,12 @@ let UserService = class UserService {
     constructor(userRepository) {
         this.userRepository = userRepository;
         this.observadores = [];
-        this.registerObserver(new UserObservator_1.UserObservator("martha.marquez@alumnos.uneatlantico.es", "marta", "gestor"));
         this.registerObserver(new UserObservator_1.UserObservator("wilfredo.hernandez@alumnos.uneatlantico.es", "marta", "gestor"));
+    }
+    deleteUser(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.userRepository.delete(id);
+        });
     }
     getAllUser() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -59,6 +63,10 @@ let UserService = class UserService {
     }
     registerUser(newUser) {
         return __awaiter(this, void 0, void 0, function* () {
+            const lastUser = yield this.userRepository.getByEmail(newUser.Email);
+            if (lastUser) {
+                throw new Error("Email Tomado");
+            }
             newUser.Password = yield utils_1.hashPassword(newUser.Password);
             yield this.userRepository.save(newUser);
             let confirmEmailId = utils_1.generateUniqueId();

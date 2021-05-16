@@ -42,6 +42,7 @@ interface IUserDto {
 interface IUserService {
     registerUser(param: IUser): Promise<void>
     getAllUser(): Promise<IUser[]>
+    deleteUser(id: number): Promise<void>
     getById(): Promise<IUser>
     confirmEmail(confirmMailId: string): Promise<void>
 }
@@ -86,6 +87,8 @@ interface IBooking {
     ID?: number;
     User: IUser;
     Book: IBook;
+    Format: string;
+    Presentation: string;
     StartDate: Date;
     EndDate: Date;
 }
@@ -111,7 +114,7 @@ interface IValoraciones {
 
 interface IBookingService {
     getAllBookings(): Promise<IBooking[]>
-    addBooking(userId: number, bookId: number): Promise<void>
+    addBooking(userId: number, bookId: number, isFisico: Boolean, isText: Boolean): Promise<void>
 }
 
 interface IRepository<T> {
@@ -130,7 +133,9 @@ interface IUserRepository extends IRepository<IUser> {
 }
 
 interface IBookRepository extends IRepository<IBook> { }
-interface IBookingRepository extends IRepository<IBooking> { }
+interface IBookingRepository extends IRepository<IBooking> {
+    saveBooking(entity: IReservaProducto): Promise<void>;
+}
 
 
 
@@ -151,4 +156,30 @@ interface Subject {
 type EmailTemplate = {
     subject: string;
     html: string;
+}
+
+
+
+interface IReservaProducto {
+    presentacion: IPresentacion;
+    formato: IFormato;
+    usuario: IUser;
+    StartDate: Date;
+    EndDate: Date;
+    libro: IBook;
+}
+
+interface IBuilder {
+    construyeFechas(): void;
+    construyeFormato(): void;
+    construyePresentacion(): void;
+    obtenerReserva(): IReservaProducto;
+
+}
+
+interface IPresentacion {
+    presentacion(): string;
+}
+interface IFormato {
+    formato(): string;
 }

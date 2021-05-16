@@ -9,8 +9,12 @@ export class UserService implements IUserService, Subject {
 
     private observadores: Observer[] = [];
     constructor(@inject(INVERSIFY_TYPES.UserRepository) private userRepository: IUserRepository) {
-        this.registerObserver(new UserObservator("martha.marquez@alumnos.uneatlantico.es", "marta", "gestor"));
         this.registerObserver(new UserObservator("wilfredo.hernandez@alumnos.uneatlantico.es", "marta", "gestor"));
+    }
+
+
+    async deleteUser(id: number): Promise<void> {
+        await this.userRepository.delete(id)
     }
 
     async getAllUser(): Promise<IUser[]> {
@@ -34,7 +38,13 @@ export class UserService implements IUserService, Subject {
     }
 
     async registerUser(newUser: IUser): Promise<void> {
+        // Confirmar qe no exista
+        const lastUser = await this.userRepository.getByEmail(newUser.Email);
+        if (lastUser) {
+            throw new Error("Email Tomado");
 
+        } 
+ 
         newUser.Password = await hashPassword(newUser.Password);
 
         await this.userRepository.save(newUser);

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookDto = void 0;
 class BookDto {
     constructor(book) {
+        this.ID = book.ID;
         this.Name = book.Name;
         this.Author = book.Author;
         this.PublicationYear = book.PublicationYear;

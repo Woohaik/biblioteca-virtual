@@ -46,7 +46,7 @@ let UserRepository = class UserRepository {
     }
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(id);
+            yield this.userConnection.delete(id);
         });
     }
     getById(id) {
