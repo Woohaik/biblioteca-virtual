@@ -1,6 +1,6 @@
 const UserTable = (props) => {
     return (
-        <div className="table-responsive mt-3">
+        <div className="table-responsive text-center mt-3">
             <table className="table table-dark">
                 <thead>
                     <tr>
@@ -14,9 +14,9 @@ const UserTable = (props) => {
                 </thead>
                 <tbody>
                     {props.libros.map(libro => (<tr>
-                        <td>{libro.Nombre}</td>
-                        <td>{libro.Autor}</td>
-                        <td>{libro.Genero}</td>
+                        <td>{libro.Name}</td>
+                        <td>{libro.Author}</td>
+                        <td>{libro.Genre}</td>
                         <td>{libro.ISBN}</td>
 
                         <td className="table-buttons">

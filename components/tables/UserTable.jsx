@@ -1,6 +1,6 @@
 const UserTable = (props) => {
     return (
-        <div className="table-responsive mt-3">
+        <div className="table-responsive text-center mt-3">
             <table className="table table-dark">
                 <thead>
                     <tr>
