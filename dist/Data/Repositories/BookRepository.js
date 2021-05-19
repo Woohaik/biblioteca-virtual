@@ -27,22 +27,9 @@ let BookRepository = class BookRepository {
         const conn = typeorm_1.getConnection();
         this.bookConnection = conn.getRepository(Libro_1.Libro);
     }
-    edit(id, entity) {
-        console.log(id);
-        console.log(entity);
-        throw new Error("Method not implemented.");
-    }
-    delete(id) {
-        console.log(id);
-        throw new Error("Method not implemented.");
-    }
-    getById(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.bookConnection.findOne(id);
-        });
-    }
     save(entity) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log(entity);
             yield this.bookConnection.insert({
                 Name: entity.Name,
                 Author: entity.Author,
@@ -58,6 +45,37 @@ let BookRepository = class BookRepository {
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.bookConnection.find();
+        });
+    }
+    getByName(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.bookConnection.findOne(undefined, { where: { Name: name } });
+        });
+    }
+    getById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.bookConnection.findOne(id);
+        });
+    }
+    edit(id, entity) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(id);
+            yield this.bookConnection.update(id, {
+                Name: entity.Name,
+                Author: entity.Author,
+                PublicationYear: entity.PublicationYear,
+                Genre: entity.Genre,
+                Rate: entity.Rate,
+                ISBN: entity.ISBN,
+                Editorial: entity.Editorial,
+                Synopsis: entity.Synopsis
+            });
+        });
+    }
+    delete(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(id);
+            yield this.bookConnection.delete(id);
         });
     }
 };

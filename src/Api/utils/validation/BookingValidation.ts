@@ -4,7 +4,7 @@ import { ErrorDto } from "../../Dtos/ErrorDto";
 const bookingValidator = Joi.object({
 
     userID: Joi.number().positive().required(),
-    bookId: Joi.number().positive().required()
+    bookID: Joi.number().positive().required()
 
 
 })
@@ -26,4 +26,3 @@ export const validateBooking = async (user: IApiBooking ) => {
         }
     }
 }
-

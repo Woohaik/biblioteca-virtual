@@ -48,6 +48,7 @@ interface IUserService {
 }
 
 interface IBook {
+    [x: string]: any
     ID?: number;
     Name: string;
     Author: string;
@@ -75,12 +76,15 @@ interface IBookDto {
 
 interface IBookService {
     getAllBooks(): Promise<IBook[]>
+    getById(id: number): Promise<IBook | undefined>
     addBook(param: IBook): Promise<void>
+    deleteBook(id: number): Promise<void>
+    updateBook(id: number, book: IBook): Promise<void>
 }
 
 interface IApiBooking {
     userID: number;
-    bookId: number;
+    bookID: number;
 }
 
 interface IBooking {
@@ -101,6 +105,14 @@ interface IBookingDto {
     EndDate: Date;
 }
 
+interface IBookingService {
+    getAllBookings(): Promise<IBooking[]>
+    addBooking(userId: number, bookId: number | undefined, isFisico: Boolean, isText: Boolean): Promise<void>
+    getById(id: number): Promise<IBooking | undefined>
+    deleteBooking(id: number): Promise<void>
+    updateBooking(id: number, userId: number, bookId: number, isFisico: Boolean, isText: Boolean): Promise<void>
+}
+
 interface IValoraciones {
     ID?: number;
     UserId: number;
@@ -108,13 +120,6 @@ interface IValoraciones {
     Rate: number;
     Commentary: string;
     CreatedAt: Date;
-}
-
-
-
-interface IBookingService {
-    getAllBookings(): Promise<IBooking[]>
-    addBooking(userId: number, bookId: number, isFisico: Boolean, isText: Boolean): Promise<void>
 }
 
 interface IRepository<T> {
@@ -132,9 +137,15 @@ interface IUserRepository extends IRepository<IUser> {
     getConfirmationEmail(confirmMailId: string): Promise<string | undefined>;
 }
 
-interface IBookRepository extends IRepository<IBook> { }
+interface IBookRepository extends IRepository<IBook> {
+    getByName(Name: string): Promise<IBook | undefined>;
+    // saveEmailValidate(id: string, email: string): Promise<void>;
+    // confirmEmail(userId: number, confirmMailId: string): Promise<void>;
+    // getConfirmationEmail(confirmMailId: string): Promise<string | undefined>;
+}
 interface IBookingRepository extends IRepository<IBooking> {
     saveBooking(entity: IReservaProducto): Promise<void>;
+    editBooking(id: number, entity: IReservaProducto): Promise<void>;
 }
 
 

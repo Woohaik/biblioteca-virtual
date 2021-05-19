@@ -31,7 +31,7 @@ let BookController = class BookController {
     constructor(bookService) {
         this.bookService = bookService;
     }
-    getBooks(_) {
+    getBooks() {
         return __awaiter(this, void 0, void 0, function* () {
             let books = yield this.bookService.getAllBooks();
             let mappedBooks = books.map((book) => {
@@ -42,7 +42,15 @@ let BookController = class BookController {
             });
         });
     }
-    register(_, newBook) {
+    getBooksById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let books = yield this.bookService.getById(id);
+            return new ResponseDto_1.ResponseDto([], {
+                books: books
+            });
+        });
+    }
+    register(newBook) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.bookService.addBook(newBook);
             return new ResponseDto_1.ResponseDto([], {
@@ -50,22 +58,57 @@ let BookController = class BookController {
             });
         });
     }
+    deleteBook(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.bookService.deleteBook(id);
+            return new ResponseDto_1.ResponseDto([], {
+                message: "Libro Eliminado"
+            });
+        });
+    }
+    update(id, newBook) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.bookService.updateBook(id, newBook);
+            return new ResponseDto_1.ResponseDto([], {
+                message: "Libro Modificado"
+            });
+        });
+    }
 };
 __decorate([
     inversify_express_utils_1.httpGet("/"),
-    __param(0, inversify_express_utils_1.response()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], BookController.prototype, "getBooks", null);
 __decorate([
-    inversify_express_utils_1.httpPost("/"),
-    __param(0, inversify_express_utils_1.response()),
-    __param(1, inversify_express_utils_1.requestBody()),
+    inversify_express_utils_1.httpGet("/:id"),
+    __param(0, inversify_express_utils_1.requestParam("id")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], BookController.prototype, "getBooksById", null);
+__decorate([
+    inversify_express_utils_1.httpPost("/"),
+    __param(0, inversify_express_utils_1.requestBody()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], BookController.prototype, "register", null);
+__decorate([
+    inversify_express_utils_1.httpDelete("/:id"),
+    __param(0, inversify_express_utils_1.requestParam("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], BookController.prototype, "deleteBook", null);
+__decorate([
+    inversify_express_utils_1.httpPost("/updateBook/:id"),
+    __param(0, inversify_express_utils_1.requestParam("id")), __param(1, inversify_express_utils_1.requestBody()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", Promise)
+], BookController.prototype, "update", null);
 BookController = __decorate([
     inversify_express_utils_1.controller('/api/book'),
     __param(0, inversify_1.inject(Config_1.INVERSIFY_TYPES.BookService)),

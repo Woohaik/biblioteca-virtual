@@ -20,20 +20,24 @@ __decorate([
     __metadata("design:type", Number)
 ], Booking.prototype, "ID", void 0);
 __decorate([
-    typeorm_1.PrimaryColumn(),
+    typeorm_1.Column(),
     __metadata("design:type", Number)
 ], Booking.prototype, "BookId", void 0);
 __decorate([
-    typeorm_1.ManyToOne(() => Libro_1.Libro, (libro) => libro.ID),
+    typeorm_1.ManyToOne(() => Libro_1.Libro, (libro) => libro.ID, {
+        onDelete: 'CASCADE'
+    }),
     typeorm_1.JoinColumn({ name: "BookId" }),
     __metadata("design:type", Libro_1.Libro)
 ], Booking.prototype, "Book", void 0);
 __decorate([
-    typeorm_1.PrimaryColumn(),
+    typeorm_1.Column(),
     __metadata("design:type", Number)
 ], Booking.prototype, "UserId", void 0);
 __decorate([
-    typeorm_1.ManyToOne(() => Usuario_1.Usuario, (usuario) => usuario.ID),
+    typeorm_1.ManyToOne(() => Usuario_1.Usuario, (usuario) => usuario.ID, {
+        onDelete: 'CASCADE'
+    }),
     typeorm_1.JoinColumn({ name: "UserId" }),
     __metadata("design:type", Usuario_1.Usuario)
 ], Booking.prototype, "User", void 0);

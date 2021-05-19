@@ -20,23 +20,58 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookingRepository = void 0;
 const inversify_1 = require("inversify");
-const typeorm_1 = require("typeorm");
 const Reservas_1 = require("../../Entities/Reservas");
+const typeorm_1 = require("typeorm");
 let BookingRepository = class BookingRepository {
     constructor() {
         const conn = typeorm_1.getConnection();
         this.bookingConnection = conn.getRepository(Reservas_1.Booking);
     }
+    getAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.bookingConnection.find({ relations: ["User", "Book"] });
+        });
+    }
+    getById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.bookingConnection.findOne(id);
+        });
+    }
     saveBooking(entity) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log("Entidad: " + entity);
+            console.log("GG" + entity.usuario.ID);
             yield this.bookingConnection.insert({
                 UserId: entity.usuario.ID,
                 BookId: entity.libro.ID,
                 Format: entity.formato.formato(),
                 Presentation: entity.presentacion.presentacion(),
                 StartDate: entity.StartDate,
-                EndDate: entity.EndDate,
+                EndDate: entity.EndDate
             });
+        });
+    }
+    editBooking(id, entity) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(entity);
+            console.log(id);
+            console.log("GG" + entity.usuario.ID);
+            console.log("GG" + entity.libro.ID);
+            console.log("Lol: " + entity.presentacion.presentacion());
+            yield this.bookingConnection.update(id, {
+                UserId: entity.usuario.ID,
+                BookId: entity.libro.ID,
+                Format: entity.formato.formato(),
+                Presentation: entity.presentacion.presentacion(),
+                StartDate: entity.StartDate,
+                EndDate: entity.EndDate
+            });
+        });
+    }
+    delete(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(id);
+            yield this.bookingConnection.delete(id);
         });
     }
     edit(id, entity) {
@@ -44,24 +79,10 @@ let BookingRepository = class BookingRepository {
         console.log(entity);
         throw new Error("Method not implemented.");
     }
-    delete(id) {
-        console.log(id);
-        throw new Error("Method not implemented.");
-    }
-    getById(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.bookingConnection.findOne(id);
-        });
-    }
     save(entity) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(entity);
             throw new Error("Method not implemented.");
-        });
-    }
-    getAll() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.bookingConnection.find({ relations: ["User", "Book"] });
         });
     }
 };
