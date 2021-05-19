@@ -6,7 +6,6 @@ import {
     UpdateDateColumn,
     ManyToOne,
     JoinColumn,
-
     PrimaryColumn
 } from "typeorm";
 import { Libro } from "./Libro";
@@ -20,16 +19,20 @@ export class Booking implements IBooking {
     public ID: number;
 
 
-    @PrimaryColumn()
+    @Column()
     public BookId: number;
-    @ManyToOne(() => Libro, (libro) => libro.ID)
+    @ManyToOne(() => Libro, (libro) => libro.ID, {
+        onDelete: 'CASCADE'
+    })
     @JoinColumn({ name: "BookId" })
     public Book: Libro;
 
 
-    @PrimaryColumn()
+    @Column()
     public UserId: number;
-    @ManyToOne(() => Usuario, (usuario) => usuario.ID)
+    @ManyToOne(() => Usuario, (usuario) => usuario.ID, {
+        onDelete: 'CASCADE'
+    })
     @JoinColumn({ name: "UserId" })
     public User: Usuario;
 

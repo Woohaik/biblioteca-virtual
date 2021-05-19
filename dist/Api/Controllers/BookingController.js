@@ -47,13 +47,44 @@ let BookingController = class BookingController {
     addBooking(_, newBooking) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log(newBooking);
                 let isValid = yield utils_1.validateBooking(newBooking);
                 if (isValid.failed)
                     return new ResponseDto_1.ResponseDto(isValid.errors, {});
-                yield this.bookingService.addBooking(newBooking.userID, newBooking.bookId, false, false);
+                yield this.bookingService.addBooking(newBooking.userID, newBooking.bookID, true, true);
                 return new ResponseDto_1.ResponseDto([], {
-                    message: "Reserva Agregada"
+                    message: "Reserva Creada"
+                });
+            }
+            catch (error) {
+                return new ResponseDto_1.ResponseDto([new ErrorDto_1.ErrorDto("MODAL", error.message)], {});
+            }
+        });
+    }
+    getBookingsById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let bookings = yield this.bookingService.getById(id);
+            return new ResponseDto_1.ResponseDto([], {
+                bookings: bookings
+            });
+        });
+    }
+    deleteBook(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.bookingService.deleteBooking(id);
+            return new ResponseDto_1.ResponseDto([], {
+                message: "Reserva Eliminada"
+            });
+        });
+    }
+    update(id, newBooking) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let isValid = yield utils_1.validateBooking(newBooking);
+                if (isValid.failed)
+                    return new ResponseDto_1.ResponseDto(isValid.errors, {});
+                yield this.bookingService.updateBooking(id, newBooking.userID, newBooking.bookID, false, true);
+                return new ResponseDto_1.ResponseDto([], {
+                    message: "Reserva Modificada"
                 });
             }
             catch (error) {
@@ -71,12 +102,32 @@ __decorate([
 ], BookingController.prototype, "getBookings", null);
 __decorate([
     inversify_express_utils_1.httpPost("/"),
-    __param(0, inversify_express_utils_1.response()),
-    __param(1, inversify_express_utils_1.requestBody()),
+    __param(0, inversify_express_utils_1.response()), __param(1, inversify_express_utils_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], BookingController.prototype, "addBooking", null);
+__decorate([
+    inversify_express_utils_1.httpGet("/:id"),
+    __param(0, inversify_express_utils_1.requestParam("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], BookingController.prototype, "getBookingsById", null);
+__decorate([
+    inversify_express_utils_1.httpDelete("/:id"),
+    __param(0, inversify_express_utils_1.requestParam("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], BookingController.prototype, "deleteBook", null);
+__decorate([
+    inversify_express_utils_1.httpPost("/updateBooking/:id"),
+    __param(0, inversify_express_utils_1.requestParam("id")), __param(1, inversify_express_utils_1.requestBody()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", Promise)
+], BookingController.prototype, "update", null);
 BookingController = __decorate([
     inversify_express_utils_1.controller('/api/booking'),
     __param(0, inversify_1.inject(Config_1.INVERSIFY_TYPES.BookingService)),

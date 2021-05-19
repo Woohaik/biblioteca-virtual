@@ -24,19 +24,54 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookService = void 0;
 const Config_1 = require("../../Config");
 const inversify_1 = require("inversify");
+const BookObservator_1 = require("./../../Entities/BookObservator");
+const MailService_1 = require("./MailService");
+const confirmBookTemplate_1 = require("../utils/email/confirmBookTemplate");
 let BookService = class BookService {
     constructor(bookRepository) {
         this.bookRepository = bookRepository;
+        this.observadores = [];
+        this.observatorEmail = "martha.marquez@alumnos.uneatlantico.es";
+        this.registerObserver(new BookObservator_1.BookObservator(this.observatorEmail, "Prueba", "La Ceiba"));
     }
     getAllBooks() {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.bookRepository.getAll();
         });
     }
+    getById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.bookRepository.getById(id);
+        });
+    }
     addBook(newBook) {
         return __awaiter(this, void 0, void 0, function* () {
+            const lastBook = yield this.bookRepository.getByName(newBook.Name);
+            if (lastBook) {
+                throw new Error("El libro que desea agregar ya existe.");
+            }
             yield this.bookRepository.save(newBook);
+            yield MailService_1.MailService.sendEmail(this.observatorEmail, confirmBookTemplate_1.confirmBookTemplate(newBook));
         });
+    }
+    updateBook(id, book) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.bookRepository.edit(id, book);
+        });
+    }
+    deleteBook(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.bookRepository.delete(id);
+        });
+    }
+    registerObserver(observer) {
+        this.observadores.push(observer);
+    }
+    removeObserver(observer) {
+        this.observadores.splice(this.observadores.findIndex(ob => ob === observer), 1);
+    }
+    notifyObserver(template) {
+        this.observadores.forEach(observers => observers.update(template));
     }
 };
 BookService = __decorate([

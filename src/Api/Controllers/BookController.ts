@@ -1,25 +1,25 @@
 import {
     controller,
+    httpDelete,
     httpGet,
     httpPost,
+    interfaces,
     requestBody,
-    response
+    requestParam,
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
-import { Response } from 'express';
 import { INVERSIFY_TYPES } from "./../../Config";
 import { ResponseDto } from "./../Dtos/ResponseDto"
 import { BookDto } from './../Dtos/BookDto';
+// import { ErrorDto } from '../Dtos/ErrorDto';
 
 @controller('/api/book')
-export class BookController {
+export class BookController implements interfaces.Controller {
     constructor(@inject(INVERSIFY_TYPES.BookService) private bookService: IBookService) { }
 
 
     @httpGet("/")
-    public async getBooks(
-        @response() _: Response
-    ): Promise<ResponseDto> {
+    public async getBooks(): Promise<ResponseDto> {
         let books = await this.bookService.getAllBooks();
         let mappedBooks = books.map((book) => {
             return new BookDto(book)
@@ -29,15 +29,35 @@ export class BookController {
         })
     }
 
+    @httpGet("/:id")
+    public async getBooksById(@requestParam("id") id: number): Promise<ResponseDto> {
+        let books = await this.bookService.getById(id);
+        return new ResponseDto([], {
+            books: books
+        })
+    }
 
     @httpPost("/")
-    public async register(
-        @response() _: Response,
-        @requestBody() newBook: IBook
-    ): Promise<ResponseDto> {
+    public async register(@requestBody() newBook: IBook): Promise<ResponseDto> {
         await this.bookService.addBook(newBook);
         return new ResponseDto([], {
             message: "Libro Agregado"
+        })
+    }
+
+    @httpDelete("/:id")
+    public async deleteBook(@requestParam("id") id: number): Promise<ResponseDto> {
+        await this.bookService.deleteBook(id);
+        return new ResponseDto([], {
+            message: "Libro Eliminado"
+        })
+    }
+
+    @httpPost("/updateBook/:id")
+    public async update(@requestParam("id") id: number, @requestBody() newBook: IBook): Promise<ResponseDto> {
+        await this.bookService.updateBook(id, newBook);
+        return new ResponseDto([], {
+            message: "Libro Modificado"
         })
     }
 }

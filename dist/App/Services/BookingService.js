@@ -28,11 +28,23 @@ const Director_1 = require("./../../Entities/builder/Director");
 const BuilderFisico_1 = require("./../../Entities/builder/BuilderFisico");
 const BuilderDigitalTexto_1 = require("./../../Entities/builder/BuilderDigitalTexto");
 const BuilderDigitalVoz_1 = require("./../../Entities/builder/BuilderDigitalVoz");
+const Presentacion_1 = require("./../../Entities/builder/Presentacion");
+const Formato_1 = require("./../../Entities/builder/Formato");
 let BookingService = class BookingService {
     constructor(bookingRepository, userRepository, bookRepository) {
         this.bookingRepository = bookingRepository;
         this.userRepository = userRepository;
         this.bookRepository = bookRepository;
+    }
+    getAllBookings() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.bookingRepository.getAll();
+        });
+    }
+    getById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.bookingRepository.getById(id);
+        });
     }
     addBooking(userId, bookId, isFisico, isText) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -45,28 +57,74 @@ let BookingService = class BookingService {
                     const builderFisico = new BuilderFisico_1.BuilderFisico();
                     director.Construye(builderFisico);
                     reservaAGuardar = builderFisico.obtenerReserva();
+                    reservaAGuardar.presentacion = new Presentacion_1.PresentacionVoz();
+                    reservaAGuardar.formato = new Formato_1.FormatoFisico();
                 }
                 else {
                     if (isText) {
                         const builderDigitalTexto = new BuilderDigitalTexto_1.BuilderDigitalTexto();
                         director.Construye(builderDigitalTexto);
                         reservaAGuardar = builderDigitalTexto.obtenerReserva();
+                        reservaAGuardar.presentacion = new Presentacion_1.PresentacionTexto();
                     }
                     else {
                         const builderDigitalVoz = new BuilderDigitalVoz_1.BuilderDigitalVoz();
                         director.Construye(builderDigitalVoz);
                         reservaAGuardar = builderDigitalVoz.obtenerReserva();
+                        reservaAGuardar.formato = new Formato_1.FormatoDigital();
                     }
                 }
                 reservaAGuardar.libro = book;
                 reservaAGuardar.usuario = user;
+                console.log("Libro: " + reservaAGuardar.libro.ID);
+                console.log("Usuario: " + reservaAGuardar.usuario.ID);
+                console.log("Presentacion: " + reservaAGuardar.presentacion.presentacion());
+                console.log("Formato: " + reservaAGuardar.formato.formato());
                 this.bookingRepository.saveBooking(reservaAGuardar);
             }
         });
     }
-    getAllBookings() {
+    updateBooking(id, userId, bookId, isFisico, isText) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.bookingRepository.getAll();
+            const user = yield this.userRepository.getById(userId);
+            const book = yield this.bookRepository.getById(bookId);
+            if (user && book) {
+                let reservaAModificar;
+                const director = new Director_1.Director();
+                if (isFisico) {
+                    const builderFisico = new BuilderFisico_1.BuilderFisico();
+                    director.Construye(builderFisico);
+                    reservaAModificar = builderFisico.obtenerReserva();
+                    reservaAModificar.presentacion = new Presentacion_1.PresentacionVoz();
+                    reservaAModificar.formato = new Formato_1.FormatoFisico();
+                }
+                else {
+                    if (isText) {
+                        const builderDigitalTexto = new BuilderDigitalTexto_1.BuilderDigitalTexto();
+                        director.Construye(builderDigitalTexto);
+                        reservaAModificar = builderDigitalTexto.obtenerReserva();
+                        reservaAModificar.presentacion = new Presentacion_1.PresentacionTexto();
+                    }
+                    else {
+                        const builderDigitalVoz = new BuilderDigitalVoz_1.BuilderDigitalVoz();
+                        director.Construye(builderDigitalVoz);
+                        reservaAModificar = builderDigitalVoz.obtenerReserva();
+                        reservaAModificar.formato = new Formato_1.FormatoDigital();
+                    }
+                }
+                reservaAModificar.libro = book;
+                reservaAModificar.usuario = user;
+                console.log("Libro: " + reservaAModificar.libro.ID);
+                console.log("Usuario: " + reservaAModificar.usuario.ID);
+                console.log("Presentacion: " + reservaAModificar.presentacion.presentacion());
+                console.log("Formato: " + reservaAModificar.formato.formato());
+                yield this.bookingRepository.editBooking(id, reservaAModificar);
+            }
+        });
+    }
+    deleteBooking(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.bookingRepository.delete(id);
         });
     }
 };

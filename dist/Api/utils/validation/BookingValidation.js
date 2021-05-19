@@ -17,7 +17,7 @@ const joi_1 = __importDefault(require("joi"));
 const ErrorDto_1 = require("../../Dtos/ErrorDto");
 const bookingValidator = joi_1.default.object({
     userID: joi_1.default.number().positive().required(),
-    bookId: joi_1.default.number().positive().required()
+    bookID: joi_1.default.number().positive().required()
 });
 const validateBooking = (user) => __awaiter(void 0, void 0, void 0, function* () {
     try {

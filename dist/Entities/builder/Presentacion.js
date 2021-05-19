@@ -1,16 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PresentacionTexto = exports.PresentacionVoz = void 0;
-class PresentacionVoz {
-    presentacion() {
-        return "ORAL";
-    }
-}
-exports.PresentacionVoz = PresentacionVoz;
+exports.PresentacionVoz = exports.PresentacionTexto = void 0;
 class PresentacionTexto {
     presentacion() {
         return "TEXTO";
     }
 }
 exports.PresentacionTexto = PresentacionTexto;
+class PresentacionVoz {
+    presentacion() {
+        return "ORAL";
+    }
+}
+exports.PresentacionVoz = PresentacionVoz;
 //# sourceMappingURL=Presentacion.js.map
