@@ -7,7 +7,7 @@ import {
 
 
 @Entity()
-export class Valoraciones implements IValoraciones {
+export class Valoraciones implements IReview {
     @PrimaryGeneratedColumn()
     public ID: number;
 

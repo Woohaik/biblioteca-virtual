@@ -40,7 +40,7 @@ export class UserRepository implements IUserRepository {
             Name: entity.Name,
             Password: entity.Password,
             Username: entity.Username,
-            ConfirmedEmail: false,
+            ConfirmedEmail: false, 
             LastName: entity.LastName
         });
     }

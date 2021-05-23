@@ -6,6 +6,8 @@ exports.default = {
     BookService: Symbol.for('BookService'),
     BookRepository: Symbol.for('BookRepository'),
     BookingService: Symbol.for('BookingService'),
-    BookingRepository: Symbol.for('BookingRepository')
+    BookingRepository: Symbol.for('BookingRepository'),
+    ReviewService: Symbol.for('ReviewService'),
+    ReviewRepository: Symbol.for('ReviewRepository')
 };
 //# sourceMappingURL=inversifyTypes.js.map

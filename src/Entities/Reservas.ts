@@ -6,7 +6,6 @@ import {
     UpdateDateColumn,
     ManyToOne,
     JoinColumn,
-    PrimaryColumn
 } from "typeorm";
 import { Libro } from "./Libro";
 import { Usuario } from "./Usuario";
@@ -50,10 +49,6 @@ export class Booking implements IBooking {
 
     @CreateDateColumn()
     public CreatedAt: Date;
-
-
-
-
 
     @UpdateDateColumn()
     public UpdatedAt: Date; 
