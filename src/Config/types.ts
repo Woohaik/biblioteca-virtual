@@ -208,10 +208,24 @@ interface IBuilder {
     obtenerReserva(): IReservaProducto;
 
 }
-
+interface IBuilderValoraciones{
+    construyeValoracion():void;
+}
+interface IValoracionProducto {
+    usuario: IUser;
+    libro: IBook;
+    Rate: IValorado;
+    Commentary: ICommentary;
+}
 interface IPresentacion {
     presentacion(): string;
 }
 interface IFormato {
     formato(): string;
+}
+interface IValorado {
+    valorado() : string;
+}
+interface ICommentary {
+    valorado() : string;
 }

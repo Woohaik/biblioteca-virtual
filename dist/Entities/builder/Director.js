@@ -7,6 +7,9 @@ class Director {
         pConstructor.construyeFormato();
         pConstructor.construyePresentacion();
     }
+    Construye2(pConstructor) {
+        pConstructor.construyeValoracion();
+    }
 }
 exports.Director = Director;
 //# sourceMappingURL=Director.js.map

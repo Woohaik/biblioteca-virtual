@@ -4,4 +4,7 @@ export class Director {
         pConstructor.construyeFormato();
         pConstructor.construyePresentacion();
     }
+    Construye2(pConstructor:IBuilderValoraciones){
+        pConstructor.construyeValoracion();
+    }
 }
