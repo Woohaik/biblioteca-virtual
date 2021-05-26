@@ -8,5 +8,9 @@ export default {
 
     // Bookings
     BookingService: Symbol.for('BookingService'),
-    BookingRepository: Symbol.for('BookingRepository')
+    BookingRepository: Symbol.for('BookingRepository'),
+
+    //Reviews 
+    ReviewService: Symbol.for('ReviewService'),
+    ReviewRepository: Symbol.for('ReviewRepository')
 };

@@ -113,13 +113,28 @@ interface IBookingService {
     updateBooking(id: number, userId: number, bookId: number, isFisico: Boolean, isText: Boolean): Promise<void>
 }
 
-interface IValoraciones {
-    ID?: number;
+interface IReview {
+    ID: number;
     UserId: number;
     BookId: number;
     Rate: number;
     Commentary: string;
     CreatedAt: Date;
+}
+interface IReviewDto{
+    ID?:number;
+    CreatedAt: Date;
+    Commentary: string;
+    Rate: number;
+    BookId?: number;
+    UserId?: number;
+}
+interface IReviewService{
+    getAllReviews(): Promise<IReview[]>
+    addReview(newReview: IReview):Promise<void>
+    getById(id: number): Promise<IReview | undefined>
+    updateReview(id: number, review: IReview): Promise<void>
+    deleteReview(id: number): Promise<void>
 }
 
 interface IRepository<T> {
@@ -147,6 +162,12 @@ interface IBookingRepository extends IRepository<IBooking> {
     saveBooking(entity: IReservaProducto): Promise<void>;
     editBooking(id: number, entity: IReservaProducto): Promise<void>;
 }
+
+interface IReviewRepository extends IRepository<IReview>{
+    getById(id:number):Promise<IReview | undefined>;
+}
+
+
 
 
 
