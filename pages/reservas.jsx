@@ -8,7 +8,7 @@ const Reservas = () => {
     useEffect(async () => {
         let response = await axios.get("http://localhost:4000/api/booking")
         console.log(response);
-
+        setReservas(response.data.data.bookings)
     }, [])
 
     return (

@@ -27,3 +27,103 @@ html {
   align-items: center;
   gap: 15px;
 }
+
+.editField{
+  display: block !important; 
+  margin: 15px auto !important;
+  color: black;
+}
+
+
+input[type="text"], input[type=number]{
+  width: 80%;
+  /* padding: 6px 5px; */
+  line-height: 1px;
+  display: inline-block;
+  border: none;
+  border-bottom: 1.5px solid rgb(48, 48, 48);
+  background-color: transparent;
+  box-sizing: border-box;
+  /* border-radius: 5px;  */
+  /* margin-bottom: 20px; */
+  text-align: justify;
+  font-weight: bold;
+  opacity: 0.5;
+  margin: auto;
+}
+
+div label{
+  text-align: left !important;
+}
+
+.editBtn{
+  display: block !important;
+  margin: auto;
+}
+
+.editCcontainer{
+  background-color: rgba(255, 255, 255, 0.952) !important;
+  max-width: 70% !important;
+  padding: 3% 0px;
+  margin: auto !important;
+  display: block !important;
+}
+
+/* Input Number */
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.number-input,
+.number-input * {
+  box-sizing: border-box;
+  display: flex;
+}
+
+.number-input a {
+  outline:none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  margin: 0;
+}
+
+.number-input a:before,
+.number-input a:after {
+  display: inline-block;
+  margin-top: 1rem;
+  position: absolute;
+  content: '';
+  width: 1rem;
+  height: 2px;
+  background-color: #212121;
+  transform: translate(-50%, -50%);
+}
+.number-input a.plus:after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.number-input input[type=number] {
+  text-align: center;
+  border: none;
+  background: none;
+  width: 100%;
+}
+
+.operation{
+  font-size: 30px !important;
+  background-color: rgba(175, 175, 175, 0.685) !important;
+}
+

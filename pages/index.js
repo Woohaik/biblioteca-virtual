@@ -10,9 +10,8 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1>Hola</h1>
+        <h1>¡Bienvenido a Bibliotecas Virtuales!</h1>
       </main>
-
       <footer >
 
       </footer>
