@@ -31,12 +31,6 @@ export class BookService implements IBookService, Subject {
         } 
         
         await this.bookRepository.save(newBook);
-
-        // let confirmEmailId: string = generateUniqueId();
-
-        // await this.bookRepository.saveEmailValidate(confirmEmailId, newBook.Name);
-
-        // this.notifyObserver(bookConfirmedToAdminTemplate(`${book.Name} ${book.Editorial}`));
         await MailService.sendEmail(this.observatorEmail, confirmBookTemplate(newBook)); // Mandar a confirmar al usuario.
     }
 

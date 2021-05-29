@@ -11,6 +11,7 @@ import {inject}from 'inversify';
 import {INVERSIFY_TYPES} from "./../../Config";
 import {ResponseDto} from "./../Dtos/ResponseDto";
 import {ReviewDto} from './../Dtos/ReviewDto';
+import { ErrorDto } from '../Dtos/ErrorDto';
 
 @controller('/api/review')
 export class ReviewController implements interfaces.Controller{
@@ -38,10 +39,14 @@ export class ReviewController implements interfaces.Controller{
 
     @httpPost("/")
     public async registerReview(@requestBody() newReview: IReview):Promise<ResponseDto>{
-        await this.ReviewService.addReview(newReview);
-        return new ResponseDto([], {
-            message: "Review agregaada"
-        })
+        try{
+            await this.ReviewService.addReview(newReview);
+            return new ResponseDto([], {
+                message: "Review agregaada"
+            })
+        } catch (error) {
+            return new ResponseDto([new ErrorDto("Modal", error.message)], {})
+        }
     }
 
     @httpPost("/updateReview/:id")
