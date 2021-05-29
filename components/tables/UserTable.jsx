@@ -1,3 +1,7 @@
+import axios from "axios"
+import { useState } from "react";
+import { useRouter } from 'next/router'
+
 const UserTable = (props) => {
     return (
         <div className="table-responsive text-center mt-3">
@@ -29,6 +33,31 @@ const UserTable = (props) => {
         </div>
     )
 
+}
+
+async function edit(id){
+    console.log(id);
+
+    sessionStorage.setItem("id", id);
+    //window.location.href = `/updateUsuarios`;
+    const router = useRouter()
+    router.push('/test')
+}
+
+async function deleteUser(idUser){
+
+    if(confirm ('¿Está seguro que desea eliminar el usuario?')) {
+        console.log("//they clicked ok");
+        await axios.delete(`http://localhost:4000/api/user/${idUser}`)
+        .then(res => {
+            console.log(res);
+            console.log(res.data.data.users);
+            window.location.href = "/usuarios";
+        })
+      }
+      else {
+        console.log("//they clicked cancel");
+      }
 }
 
 export default UserTable
