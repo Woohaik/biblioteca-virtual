@@ -8,6 +8,8 @@ class BookingDto {
         console.log(booking);
         this.ID = booking.ID;
         this.User = new UserDto_1.UserDto(booking.User);
+        this.Format = booking.Format;
+        this.Presentation = booking.Presentation;
         this.Book = new BookDto_1.BookDto(booking.Book);
         this.StartDate = booking.StartDate;
         this.EndDate = booking.EndDate;
