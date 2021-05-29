@@ -8,13 +8,9 @@ export default function Home() {
         <title>Biblio</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main>
         <h1>¡Bienvenido a Bibliotecas Virtuales!</h1>
       </main>
-      <footer >
-
-      </footer>
     </div>
   )
 }

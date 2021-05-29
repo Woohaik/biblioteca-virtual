@@ -20,8 +20,7 @@ const UserTable = (props) => {
                         <td>{reserva.StartDate}</td>
                         <td>{reserva.EndDate}</td>
                         <td className="table-buttons">
-                            <button type="button" className="btn btn-warning">Editar</button>
-                            <button type="button" className="btn btn-danger">Eliminar</button>
+                            <button type="button" className="btn btn-danger">Cancelar</button>
                         </td>
                     </tr>))}
                 </tbody>
