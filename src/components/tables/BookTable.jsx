@@ -25,42 +25,18 @@ const BookTable = (props) => {
                         <td>{libro.Editorial}</td>
                         <td>{libro.ISBN}</td>
                         <td>{libro.Rate}</td>
-
                         <td className="table-buttons">
-                            <button type="button" className="btn btn-warning" onClick={(e) => edit(libro.ID, e)}>Editar</button>
-                            <button type="button" className="btn btn-danger" onClick={(e) => deleteBook(libro.ID, e)}>Eliminar</button>
+                            <button type="button" className="btn btn-warning">Editar</button>
+                            <button type="button" className="btn btn-danger">Eliminar</button>
                         </td>
-                    </tr>))}
+                    </tr>))
+                    }
                 </tbody>
             </table>
 
-            </div>
+        </div>
 
     )
 
 }
-
-async function edit(id){
-    console.log(id);
-
-    sessionStorage.setItem("id", id);
-    window.location.href = `/updateLibros`;
-}
-
-async function deleteBook(idBook){
-
-    if(confirm ('¿Está seguro que desea eliminar el libro?')) {
-        console.log("//they clicked ok");
-        await axios.delete(`http://localhost:4000/api/book/${idBook}`)
-        .then(res => {
-            console.log(res);
-            console.log(res.data.data.books);
-            window.location.href = "/libros";
-        })
-      }
-      else {
-        console.log("//they clicked cancel");
-      }
-}
-
 export default BookTable
