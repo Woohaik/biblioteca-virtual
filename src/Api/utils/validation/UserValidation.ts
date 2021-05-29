@@ -1,6 +1,7 @@
 import Joi from "joi";
 import { ErrorDto } from "../../Dtos/ErrorDto";
 
+
 const userValidator = Joi.object({
     Email: Joi.string().min(3),
     Name: Joi.string().min(3),
