@@ -11,7 +11,7 @@ import { inject } from 'inversify';
 import { INVERSIFY_TYPES } from "./../../Config";
 import { ResponseDto } from "./../Dtos/ResponseDto"
 import { BookDto } from './../Dtos/BookDto';
-// import { ErrorDto } from '../Dtos/ErrorDto';
+import { ErrorDto } from '../Dtos/ErrorDto';
 
 @controller('/api/book')
 export class BookController implements interfaces.Controller {
@@ -39,10 +39,14 @@ export class BookController implements interfaces.Controller {
 
     @httpPost("/")
     public async register(@requestBody() newBook: IBook): Promise<ResponseDto> {
-        await this.bookService.addBook(newBook);
-        return new ResponseDto([], {
-            message: "Libro Agregado"
-        })
+        try{
+            await this.bookService.addBook(newBook);
+            return new ResponseDto([], {
+                message: "Libro Agregado"
+            })
+        } catch (error) {
+            return new ResponseDto([new ErrorDto("Modal", error.message)], {})
+        }
     }
 
     @httpDelete("/:id")
