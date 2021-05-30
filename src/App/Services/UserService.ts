@@ -1,6 +1,6 @@
 import { inject, injectable } from 'inversify';
 import { INVERSIFY_TYPES } from './../../Config';
-import { hashPassword, confirmEmailTemplate, generateUniqueId, userConfirmedToAdminTemplate } from './../utils';
+import { hashPassword, confirmEmailTemplate, generateUniqueId, userConfirmedToAdminTemplate, comparePassword } from './../utils';
 import { MailService } from "./MailService";
 import { UserObservator } from "./../../Entities/UserObservator";
 
@@ -12,6 +12,20 @@ export class UserService implements IUserService, Subject {
         this.registerObserver(new UserObservator("wilfredo.hernandez@alumnos.uneatlantico.es", "marta", "gestor"));
     }
 
+    async loginUser(Email: string, Password: string): Promise<IUser> {
+   
+        
+        const user = await this.userRepository.getByEmail(Email);
+        console.log(user);
+        
+        if (!user) {
+            throw new Error("Usuario no encontrado!")
+        }
+        const isPasswordGood = comparePassword(user.Password, Password);
+        if (!isPasswordGood) throw new Error("Invalid Password");
+        return user;
+    }
+
 
     async deleteUser(id: number): Promise<void> {
         await this.userRepository.delete(id)
@@ -21,8 +35,8 @@ export class UserService implements IUserService, Subject {
         return await this.userRepository.getAll()
     }
 
-    async getById(): Promise<IUser> {
-        throw new Error('Method not implemented.');
+    async getById(id: number): Promise<IUser | undefined> {
+        return await this.userRepository.getById(id);
     }
 
     async confirmEmail(emailId: string): Promise<void> {
@@ -43,8 +57,8 @@ export class UserService implements IUserService, Subject {
         if (lastUser) {
             throw new Error("Email Tomado");
 
-        } 
- 
+        }
+
         newUser.Password = await hashPassword(newUser.Password);
 
         await this.userRepository.save(newUser);

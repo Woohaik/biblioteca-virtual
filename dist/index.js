@@ -37,12 +37,14 @@ const bodyParser = __importStar(require("body-parser"));
 const inversify_1 = require("inversify");
 const inversify_config_1 = require("./inversify.config");
 const Config_1 = require("./Config");
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
 (() => __awaiter(void 0, void 0, void 0, function* () {
     const container = new inversify_1.Container();
     yield container.loadAsync(inversify_config_1.bindings);
     let server = new inversify_express_utils_1.InversifyExpressServer(container);
     server.setConfig((app) => {
+        app.use(cookie_parser_1.default(Config_1.CONFIG.SECRET));
         app.use(bodyParser.urlencoded({
             extended: true
         }));

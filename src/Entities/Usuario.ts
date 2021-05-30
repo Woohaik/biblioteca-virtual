@@ -30,7 +30,7 @@ export class Usuario implements IUser {
     public ConfirmedEmail: boolean;
 
     @Column({ default: "user" })
-    public Rol: string;
+    public Rol?: string;
 
     @CreateDateColumn()
     public CreatedAt: Date;
