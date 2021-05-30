@@ -22,6 +22,7 @@ interface IUser {
     Name: string;
     Password: string;
     Username: string;
+    Rol?: string;
     LastName: string;
     ConfirmedEmail: boolean;
     CreatedAt: Date;
@@ -40,10 +41,11 @@ interface IUserDto {
 }
 
 interface IUserService {
+    loginUser(Email: string, Password: string): Promise<IUser>;
     registerUser(param: IUser): Promise<void>
     getAllUser(): Promise<IUser[]>
     deleteUser(id: number): Promise<void>
-    getById(): Promise<IUser>
+    getById(id: number): Promise<IUser | undefined>
     confirmEmail(confirmMailId: string): Promise<void>
 }
 
@@ -124,17 +126,17 @@ interface IReview {
     Commentary: string;
     CreatedAt: Date;
 }
-interface IReviewDto{
-    ID?:number;
+interface IReviewDto {
+    ID?: number;
     CreatedAt: Date;
     Commentary: string;
     Rate: number;
     BookId?: number;
     UserId?: number;
 }
-interface IReviewService{
+interface IReviewService {
     getAllReviews(): Promise<IReview[]>
-    addReview(newReview: IReview):Promise<void>
+    addReview(newReview: IReview): Promise<void>
     getById(id: number): Promise<IReview | undefined>
     updateReview(id: number, review: IReview): Promise<void>
     deleteReview(id: number): Promise<void>
@@ -169,8 +171,8 @@ interface IBookingRepository extends IRepository<IBooking> {
     editBooking(id: number, entity: IReservaProducto): Promise<void>;
 }
 
-interface IReviewRepository extends IRepository<IReview>{
-    getById(id:number):Promise<IReview | undefined>;
+interface IReviewRepository extends IRepository<IReview> {
+    getById(id: number): Promise<IReview | undefined>;
 }
 
 
@@ -214,8 +216,8 @@ interface IBuilder {
     obtenerReserva(): IReservaProducto;
 
 }
-interface IBuilderValoraciones{
-    construyeValoracion():void;
+interface IBuilderValoraciones {
+    construyeValoracion(): void;
 }
 interface IValoracionProducto {
     usuario: IUser;
@@ -230,8 +232,8 @@ interface IFormato {
     formato(): string;
 }
 interface IValorado {
-    valorado() : string;
+    valorado(): string;
 }
 interface ICommentary {
-    valorado() : string;
+    valorado(): string;
 }

@@ -3,7 +3,9 @@ import { InversifyExpressServer } from 'inversify-express-utils';
 import * as bodyParser from 'body-parser';
 import { Container } from "inversify";
 import { bindings } from "./inversify.config";
-import { CONFIG } from "./Config"
+import { CONFIG } from "./Config";
+import cookieParser from "cookie-parser";
+
 import cors from "cors";
 
 (async () => {
@@ -11,6 +13,10 @@ import cors from "cors";
     await container.loadAsync(bindings);
     let server = new InversifyExpressServer(container);
     server.setConfig((app) => {
+
+
+        app.use(cookieParser(CONFIG.SECRET));
+
         app.use(bodyParser.urlencoded({
             extended: true
         }));

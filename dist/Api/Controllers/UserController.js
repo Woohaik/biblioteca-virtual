@@ -20,15 +20,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const inversify_express_utils_1 = require("inversify-express-utils");
 const inversify_1 = require("inversify");
+const express_1 = __importDefault(require("express"));
 const Config_1 = require("../../Config");
 const ResponseDto_1 = require("./../Dtos/ResponseDto");
 const utils_1 = require("./../utils");
 const UserDto_1 = require("./../Dtos/UserDto");
 const ErrorDto_1 = require("../Dtos/ErrorDto");
+const jwt_1 = require("../utils/jwt/jwt");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -39,6 +44,44 @@ let UserController = class UserController {
             return new ResponseDto_1.ResponseDto([], {
                 message: "Usuario Eliminado"
             });
+        });
+    }
+    loginUser(res, elem) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const user = yield this.userService.loginUser(elem.Email, elem.Password);
+                const options = {
+                    maxAge: 1000 * 60 * 15,
+                    httpOnly: true,
+                    sameSite: "strict"
+                };
+                const token = jwt_1.loginUserToken({ ID: user.ID, ROLE: user.Rol });
+                res.cookie("clgn", token, options);
+                const newUser = new UserDto_1.UserDto(user);
+                return new ResponseDto_1.ResponseDto([], { user: newUser });
+            }
+            catch (error) {
+                return new ResponseDto_1.ResponseDto([new ErrorDto_1.ErrorDto("Modal", error.message)], {});
+            }
+        });
+    }
+    authUser(req) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const token = req.cookies["clgn"];
+                if (token) {
+                    const decodedToken = jwt_1.decodeToken(token);
+                    decodedToken.ID;
+                    const user = yield this.userService.getById(decodedToken.ID || -1);
+                    return new ResponseDto_1.ResponseDto([], { user });
+                }
+                else {
+                    return new ResponseDto_1.ResponseDto([new ErrorDto_1.ErrorDto("Modal", "Error al autenticar!")], {});
+                }
+            }
+            catch (error) {
+                return new ResponseDto_1.ResponseDto([new ErrorDto_1.ErrorDto("Modal", error.message)], {});
+            }
         });
     }
     getAllUsers() {
@@ -80,6 +123,20 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "deleteUser", null);
+__decorate([
+    inversify_express_utils_1.httpPost("/login"),
+    __param(0, inversify_express_utils_1.response()), __param(1, inversify_express_utils_1.requestBody()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "loginUser", null);
+__decorate([
+    inversify_express_utils_1.httpGet("/auth"),
+    __param(0, inversify_express_utils_1.request()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "authUser", null);
 __decorate([
     inversify_express_utils_1.httpGet("/"),
     __metadata("design:type", Function),

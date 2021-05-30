@@ -33,6 +33,19 @@ let UserService = class UserService {
         this.observadores = [];
         this.registerObserver(new UserObservator_1.UserObservator("wilfredo.hernandez@alumnos.uneatlantico.es", "marta", "gestor"));
     }
+    loginUser(Email, Password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield this.userRepository.getByEmail(Email);
+            console.log(user);
+            if (!user) {
+                throw new Error("Usuario no encontrado!");
+            }
+            const isPasswordGood = utils_1.comparePassword(user.Password, Password);
+            if (!isPasswordGood)
+                throw new Error("Invalid Password");
+            return user;
+        });
+    }
     deleteUser(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.userRepository.delete(id);
@@ -43,9 +56,9 @@ let UserService = class UserService {
             return yield this.userRepository.getAll();
         });
     }
-    getById() {
+    getById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            throw new Error('Method not implemented.');
+            return yield this.userRepository.getById(id);
         });
     }
     confirmEmail(emailId) {

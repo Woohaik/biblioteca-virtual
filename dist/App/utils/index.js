@@ -14,7 +14,7 @@ exports.generateUniqueId = exports.loginUserToken = exports.hashPassword = expor
 var PasswordCriptBcrip_1 = require("./cript/PasswordCriptBcrip");
 Object.defineProperty(exports, "comparePassword", { enumerable: true, get: function () { return PasswordCriptBcrip_1.comparePassword; } });
 Object.defineProperty(exports, "hashPassword", { enumerable: true, get: function () { return PasswordCriptBcrip_1.hashPassword; } });
-var jwt_1 = require("./jwt/jwt");
+var jwt_1 = require("../../Api/utils/jwt/jwt");
 Object.defineProperty(exports, "loginUserToken", { enumerable: true, get: function () { return jwt_1.loginUserToken; } });
 var uuid_1 = require("./uuid/uuid");
 Object.defineProperty(exports, "generateUniqueId", { enumerable: true, get: function () { return uuid_1.generateUniqueId; } });

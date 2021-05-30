@@ -4,17 +4,20 @@ import {
     httpGet,
     interfaces,
     response,
+    request,
     requestBody,
     requestParam,
     httpDelete
 } from 'inversify-express-utils';
+
 import { inject } from 'inversify';
-import { Response } from 'express';
+import express, { Response, CookieOptions } from 'express';
 import { INVERSIFY_TYPES } from "../../Config"
 import { ResponseDto } from "./../Dtos/ResponseDto"
 import { validateUser } from "./../utils"
 import { UserDto } from './../Dtos/UserDto';
 import { ErrorDto } from '../Dtos/ErrorDto';
+import { decodeToken, loginUserToken } from '../utils/jwt/jwt';
 @controller('/api/user')
 export class UserController implements interfaces.Controller {
 
@@ -26,6 +29,42 @@ export class UserController implements interfaces.Controller {
         return new ResponseDto([], {
             message: "Usuario Eliminado"
         })
+    }
+
+
+    @httpPost("/login")
+    public async loginUser(@response() res: express.Response, @requestBody() elem: any): Promise<ResponseDto> {
+        try {
+            const user = await this.userService.loginUser(elem.Email, elem.Password);
+            const options: CookieOptions = {
+                maxAge: 1000 * 60 * 15, // would expire after 15 minutes
+                httpOnly: true, // The cookie only accessible by the web server
+                sameSite: "strict"
+            };
+            const token = loginUserToken({ ID: user.ID, ROLE: user.Rol });
+            res.cookie("clgn", token, options);
+            const newUser = new UserDto(user);
+            return new ResponseDto([], { user: newUser });
+        } catch (error) {
+            return new ResponseDto([new ErrorDto("Modal", error.message)], {});
+        }
+    }
+
+    @httpGet("/auth")
+    public async authUser(@request() req: express.Request): Promise<ResponseDto> {
+        try {
+            const token = req.cookies["clgn"];
+            if (token) {
+                const decodedToken: any = decodeToken(token);
+                decodedToken.ID
+                const user = await this.userService.getById(decodedToken.ID || -1);
+                return new ResponseDto([], { user });
+            } else {
+                return new ResponseDto([new ErrorDto("Modal", "Error al autenticar!")], {});
+            }
+        } catch (error) {
+            return new ResponseDto([new ErrorDto("Modal", error.message)], {});
+        }
     }
 
 
@@ -57,12 +96,8 @@ export class UserController implements interfaces.Controller {
                 message: "Usuario Registrado"
             })
         } catch (error) {
-
-            
             return new ResponseDto([new ErrorDto("Modal", error.message)], {
-
             })
         }
-
     }
 }
