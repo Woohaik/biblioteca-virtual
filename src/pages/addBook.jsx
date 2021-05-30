@@ -49,7 +49,7 @@ const addBooks = () => {
         //setSubmitting(false);
         if (response.data.Errors.length > 0) {
             response.data.Errors.forEach(err => {
-                if (!err.message.includes("Invalid creation of book")) window.alert(err.message);
+                if (!err.message.includes("Invalid login")) window.alert(err.message);
             })
         }
         
