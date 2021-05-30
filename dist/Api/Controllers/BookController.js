@@ -27,6 +27,7 @@ const inversify_1 = require("inversify");
 const Config_1 = require("./../../Config");
 const ResponseDto_1 = require("./../Dtos/ResponseDto");
 const BookDto_1 = require("./../Dtos/BookDto");
+const ErrorDto_1 = require("../Dtos/ErrorDto");
 let BookController = class BookController {
     constructor(bookService) {
         this.bookService = bookService;
@@ -50,12 +51,41 @@ let BookController = class BookController {
             });
         });
     }
+    getBooksByAuthor(author) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let books = yield this.bookService.getByAuthor(author);
+            return new ResponseDto_1.ResponseDto([], {
+                books: books
+            });
+        });
+    }
+    getBooksByGenre(genre) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let books = yield this.bookService.getByGenre(genre);
+            return new ResponseDto_1.ResponseDto([], {
+                books: books
+            });
+        });
+    }
+    getBooksByEditorial(editorial) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let books = yield this.bookService.getByEditorial(editorial);
+            return new ResponseDto_1.ResponseDto([], {
+                books: books
+            });
+        });
+    }
     register(newBook) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.bookService.addBook(newBook);
-            return new ResponseDto_1.ResponseDto([], {
-                message: "Libro Agregado"
-            });
+            try {
+                yield this.bookService.addBook(newBook);
+                return new ResponseDto_1.ResponseDto([], {
+                    message: "Libro Agregado"
+                });
+            }
+            catch (error) {
+                return new ResponseDto_1.ResponseDto([new ErrorDto_1.ErrorDto("Modal", error.message)], {});
+            }
         });
     }
     deleteBook(id) {
@@ -88,6 +118,27 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], BookController.prototype, "getBooksById", null);
+__decorate([
+    inversify_express_utils_1.httpGet("/author/:author"),
+    __param(0, inversify_express_utils_1.requestParam("author")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], BookController.prototype, "getBooksByAuthor", null);
+__decorate([
+    inversify_express_utils_1.httpGet("/genre/:genre"),
+    __param(0, inversify_express_utils_1.requestParam("genre")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], BookController.prototype, "getBooksByGenre", null);
+__decorate([
+    inversify_express_utils_1.httpGet("/editorial/:editorial"),
+    __param(0, inversify_express_utils_1.requestParam("editorial")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], BookController.prototype, "getBooksByEditorial", null);
 __decorate([
     inversify_express_utils_1.httpPost("/"),
     __param(0, inversify_express_utils_1.requestBody()),

@@ -37,6 +37,30 @@ export class BookController implements interfaces.Controller {
         })
     }
 
+    @httpGet("/author/:author")
+    public async getBooksByAuthor(@requestParam("author") author: string): Promise<ResponseDto> {
+        let books = await this.bookService.getByAuthor(author);
+        return new ResponseDto([], {
+            books: books
+        })
+    }
+
+    @httpGet("/genre/:genre")
+    public async getBooksByGenre(@requestParam("genre") genre: string): Promise<ResponseDto> {
+        let books = await this.bookService.getByGenre(genre);
+        return new ResponseDto([], {
+            books: books
+        })
+    }
+
+    @httpGet("/editorial/:editorial")
+    public async getBooksByEditorial(@requestParam("editorial") editorial: string): Promise<ResponseDto> {
+        let books = await this.bookService.getByEditorial(editorial);
+        return new ResponseDto([], {
+            books: books
+        })
+    }
+
     @httpPost("/")
     public async register(@requestBody() newBook: IBook): Promise<ResponseDto> {
         try{

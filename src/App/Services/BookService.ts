@@ -34,6 +34,18 @@ export class BookService implements IBookService, Subject {
         await MailService.sendEmail(this.observatorEmail, confirmBookTemplate(newBook)); // Mandar a confirmar al usuario.
     }
 
+    async getByAuthor(author: string): Promise<IBook[] | undefined> {
+        return await this.bookRepository.getByAuthor(author);
+    }
+
+    async getByGenre(genre: string): Promise<IBook[] | undefined> {
+        return await this.bookRepository.getByGenre(genre);
+    }
+
+    async getByEditorial(editorial: string): Promise<IBook[] | undefined> {
+        return await this.bookRepository.getByEditorial(editorial);
+    }
+
     async updateBook(id: number, book: IBook): Promise<void> {
         await this.bookRepository.edit(id, book)
     }

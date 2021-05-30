@@ -27,6 +27,7 @@ const inversify_1 = require("inversify");
 const Config_1 = require("./../../Config");
 const ResponseDto_1 = require("./../Dtos/ResponseDto");
 const ReviewDto_1 = require("./../Dtos/ReviewDto");
+const ErrorDto_1 = require("../Dtos/ErrorDto");
 let ReviewController = class ReviewController {
     constructor(ReviewService) {
         this.ReviewService = ReviewService;
@@ -52,10 +53,15 @@ let ReviewController = class ReviewController {
     }
     registerReview(newReview) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.ReviewService.addReview(newReview);
-            return new ResponseDto_1.ResponseDto([], {
-                message: "Review agregaada"
-            });
+            try {
+                yield this.ReviewService.addReview(newReview);
+                return new ResponseDto_1.ResponseDto([], {
+                    message: "Review agregaada"
+                });
+            }
+            catch (error) {
+                return new ResponseDto_1.ResponseDto([new ErrorDto_1.ErrorDto("Modal", error.message)], {});
+            }
         });
     }
     updateReview(id, newReview) {

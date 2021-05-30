@@ -33,6 +33,18 @@ export class BookRepository implements IBookRepository {
     async getByName(name: string): Promise<IBook | undefined> {
         return await this.bookConnection.findOne(undefined, { where: { Name: name } })
     }
+
+    async getByAuthor(author: string): Promise<IBook[] | undefined> {
+        return await this.bookConnection.find({ where: { Author: author } })
+    }
+
+    async getByGenre(genre: string): Promise<IBook[] | undefined> {
+        return await this.bookConnection.find({ where: { Genre: genre } })
+    }
+
+    async getByEditorial(editorial: string): Promise<IBook[] | undefined> {
+        return await this.bookConnection.find({ where: { Editorial: editorial } })
+    }
     
     async getById(id: number): Promise<IBook | undefined> {
         return await this.bookConnection.findOne(id)

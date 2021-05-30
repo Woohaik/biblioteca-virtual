@@ -54,6 +54,21 @@ let BookService = class BookService {
             yield MailService_1.MailService.sendEmail(this.observatorEmail, confirmBookTemplate_1.confirmBookTemplate(newBook));
         });
     }
+    getByAuthor(author) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.bookRepository.getByAuthor(author);
+        });
+    }
+    getByGenre(genre) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.bookRepository.getByGenre(genre);
+        });
+    }
+    getByEditorial(editorial) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.bookRepository.getByEditorial(editorial);
+        });
+    }
     updateBook(id, book) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.bookRepository.edit(id, book);
