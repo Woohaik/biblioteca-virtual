@@ -52,6 +52,21 @@ let BookRepository = class BookRepository {
             return yield this.bookConnection.findOne(undefined, { where: { Name: name } });
         });
     }
+    getByAuthor(author) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.bookConnection.find({ where: { Author: author } });
+        });
+    }
+    getByGenre(genre) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.bookConnection.find({ where: { Genre: genre } });
+        });
+    }
+    getByEditorial(editorial) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.bookConnection.find({ where: { Editorial: editorial } });
+        });
+    }
     getById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.bookConnection.findOne(id);

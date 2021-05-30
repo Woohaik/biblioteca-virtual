@@ -77,6 +77,9 @@ interface IBookDto {
 interface IBookService {
     getAllBooks(): Promise<IBook[]>
     getById(id: number): Promise<IBook | undefined>
+    getByAuthor(author: string): Promise<IBook[] | undefined>
+    getByEditorial(editorial: string): Promise<IBook[] | undefined>
+    getByGenre(genre: string): Promise<IBook[] | undefined>
     addBook(param: IBook): Promise<void>
     deleteBook(id: number): Promise<void>
     updateBook(id: number, book: IBook): Promise<void>
@@ -154,6 +157,9 @@ interface IUserRepository extends IRepository<IUser> {
 
 interface IBookRepository extends IRepository<IBook> {
     getByName(Name: string): Promise<IBook | undefined>;
+    getByAuthor(Author: string): Promise<IBook[] | undefined>;
+    getByGenre(genre: string): Promise<IBook[] | undefined>
+    getByEditorial(editorial: string): Promise<IBook[] | undefined>
     // saveEmailValidate(id: string, email: string): Promise<void>;
     // confirmEmail(userId: number, confirmMailId: string): Promise<void>;
     // getConfirmationEmail(confirmMailId: string): Promise<string | undefined>;
