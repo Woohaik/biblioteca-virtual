@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { axiosBaseURL } from "./../config/axios.ts";
 import ReservaTable from "./../components/tables/ReservaTable"
+import Link from 'next/link';
 
 const Reservas = () => {
     const [reservas, setReservas] = useState([])
@@ -12,9 +13,8 @@ const Reservas = () => {
 
     return (
         <div className=" mt-5">
-            <h1 className="mt-4">Todas Reservas </h1>
+            <h1 className="mt-4">Todas Reservas <Link type="button" href="/addBooking" className="btn btn-primary ml-auto">Crear Reserva</Link></h1>
             <ReservaTable reservas={reservas} />
-
         </div>
     )
 
