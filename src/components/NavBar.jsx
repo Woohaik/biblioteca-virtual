@@ -25,6 +25,11 @@ const NavBar = () => {
                         <Link href="/libros">Libros</Link>
                     </div>
                 </li>
+                <li className="nav-item">
+                    <div className="nav-link">
+                        <Link href="/addReview">Reseñas</Link>
+                    </div>
+                </li>
                 <li className="nav-item ml-auto">
                     <div className="nav-link"  >
                         <Link href="/registrarse">Registrarse</Link>

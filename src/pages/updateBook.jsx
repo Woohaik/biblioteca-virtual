@@ -1,6 +1,10 @@
 
 import React from 'react';
+import axios from "axios"
+import { useState, useEffect } from "react";
+// import { useLocation } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useParams } from "react-router-dom";
 import { axiosBaseURL } from "./../config/axios.ts"
 import * as Yup from 'yup';
 
@@ -19,6 +23,9 @@ const registerSchema = Yup.object().shape({
         .max(50, 'Muy Largo!')
         .required('Required'),
     Rate: Yup.number()
+        .integer()
+        .min(1)
+        .max(10, 'No puede ser mayor a 10')
         .required('Required'),
     Genre: Yup.string()
         .min(3, 'Muy Corto!')
@@ -39,20 +46,43 @@ const registerSchema = Yup.object().shape({
 });
 
 
-const addBooks = () => {
+const updateBook = () => {
 
     const router = useRouter()
+    const [libro, setLibro] = useState([])
 
+  useEffect(async () => {
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get('id');
+    console.log(id);
+
+    const response = await axios.get(`http://localhost:4000/api/book/${id}`);  //${books.ID}
+    setLibro(response.data.data.books);
+    console.log(response.data.data.books);
+    // libro = response.data.data.books;
+    console.log("Libro: "+ libro);
+    // console.log(books);
+    //console.log(props.location.state);
+  }, [])
 
     const handleRegisterSubmit = async (values, { setSubmitting }) => {
-        const response = await axiosBaseURL.post("/book", values);
-        //setSubmitting(false);
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const id = urlParams.get('id');
+        console.log("Values: "+ JSON.stringify(values));
+        const parsed = parseInt(values.Rate)
+        console.log("Value Rate: "+ parsed);
+        const response = await axios.post(`http://localhost:4000/api/book/updateBook/${id}`, values);
+        
         if (response.data.Errors.length > 0) {
             response.data.Errors.forEach(err => {
                 if (!err.message.includes("Invalid login")) window.alert(err.message);
             })
         }
         
+
         router.push("/libros")
 
     }
@@ -62,29 +92,27 @@ const addBooks = () => {
             <div className="mt-4">
             </div>
             <Formik
+                enableReinitialize="true"
                 initialValues={{
-                    Name: "",
-                    Genre: "",
-                    ISBN: "",
-                    Author: "",
-                    PublicationYear: "",
-                    Rate: 5,
-                    Genre: "",
-                    ISBN: "",
-                    Editorial: "",
-                    Synopsis: ""
-
+                    Name: libro.Name,
+                    Genre: libro.Genre,
+                    ISBN: libro.ISBN,
+                    Author: libro.Author,
+                    PublicationYear: libro.PublicationYear,
+                    Rate: libro.Rate,
+                    Editorial: libro.Editorial,
+                    Synopsis: libro.Synopsis
                 }}
                 validationSchema={registerSchema}
                 onSubmit={handleRegisterSubmit}
             >
                 {({ isSubmitting }) => (
                     <Form className="mx-5 px-5">
-                        <h1>Registra un Libro!</h1>
+                        <h1>Modifica el Libro: {libro.Name}</h1>
                         <hr />
                         <div className="form-group">
                             <label for="name">Nombre:</label>
-                            <Field type="Name" name="Name" className="form-control" />
+                            <Field type="text" name="Name" className="form-control" defaultValue={libro.Name}/>
                             <ErrorMessage name="Name" component="div" />
                         </div>
                         <div className="form-group">
@@ -129,7 +157,7 @@ const addBooks = () => {
                         </div>
                         <div className="text-center">
                             <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-                                Crear Libro
+                                Editar Libro
                             </button>
                         </div>
                     </Form>
@@ -139,12 +167,20 @@ const addBooks = () => {
     )
 }
 
+
+function handleRateChange(){
+    document.getElementById("rate").value = parseInt(document.getElementById("rate").value) +1;
+    console.log(document.getElementById("rate").value);
+    document.getElementById("rate").innerHTML = document.getElementById("rate").value;
+}
+
 function add(id){
     document.getElementById(id).parentNode.querySelector('input[type=number]').stepUp();
+    
  }
  
  function substract(id){
-     document.getElementById(id).parentNode.querySelector('input[type=number]').stepDown();
+    document.getElementById("rate").value = document.getElementById(id).parentNode.querySelector('input[type=number]').stepDown();
  }
 
-export default addBooks;
+export default updateBook;

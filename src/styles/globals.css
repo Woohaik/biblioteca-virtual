@@ -38,16 +38,6 @@ button {
 }
 
 /* Input Number */
-input[type="number"] {
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-}
 
 .number-input,
 .number-input * {
@@ -87,10 +77,4 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
   border: none;
   width: 100%;
-}
-
-.operation{
-  font-size: 20px !important;
-  background-color: rgba(175, 175, 175, 0.685) !important;
-  padding: 0;
 }
